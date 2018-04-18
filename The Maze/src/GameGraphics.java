@@ -20,7 +20,7 @@ public class GameGraphics extends JPanel {
 		g.fillRect(70, 450, 10, 150);
 		
 		//player
-		g.setColor(Color.blue);
+		g.setColor(Color.CYAN);
 		g.fillRect(27,520,15,15);
 	}
 }
