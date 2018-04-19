@@ -11,6 +11,19 @@ public class GameGraphics extends JPanel {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, 1100, 600);
 		
+		//borders
+		g.setColor(Color.white);
+		g.fillRect(0,0,5,600);
+		
+		g.setColor(Color.white);
+		g.fillRect(0,0,1100,5);
+		
+		g.setColor(Color.white);
+		g.fillRect(1090,0,5,600);
+		
+		g.setColor(Color.white);
+		g.fillRect(0,567,1100,5);
+		
 		//wall1
 		g.setColor(Color.white);
 		g.fillRect(0,400,150,10);
@@ -18,6 +31,10 @@ public class GameGraphics extends JPanel {
 		//wall2
 		g.setColor(Color.white);
 		g.fillRect(70, 450, 10, 150);
+		
+		//wall3
+		g.setColor(Color.white);
+		g.fillRect(140, 450, 10, 70);
 		
 		//player
 		g.setColor(Color.CYAN);

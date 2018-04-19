@@ -7,8 +7,9 @@ public class GameFrame {
 		GameGraphics gg = new GameGraphics();
 		frame.setBounds(100, 50, 1100, 600);
 		frame.setResizable(false);
-		frame.setTitle("Labirynt");
+		frame.setTitle("The Maze");
 		frame.setVisible(true);
 		frame.add(gg);
+
 	}
 }
