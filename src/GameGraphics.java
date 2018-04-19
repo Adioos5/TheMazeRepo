@@ -22,7 +22,7 @@ public class GameGraphics extends JPanel {
 		g.fillRect(1090,0,5,600);
 		
 		g.setColor(Color.white);
-		g.fillRect(0,567,1100,5);
+		g.fillRect(70,567,1100,5);
 		
 		//wall1
 		g.setColor(Color.white);
