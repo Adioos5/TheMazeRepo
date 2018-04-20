@@ -56,9 +56,45 @@ public class GameGraphics extends JPanel {
 		g.setColor(Color.white);
 		g.fillRect(200, 470, 200, 10);
 
-		// wall4
+		// wall9
 		g.setColor(Color.white);
 		g.fillRect(600, 520, 450, 10);
+
+		// wall10
+		g.setColor(Color.white);
+		g.fillRect(70, 250, 10, 100);
+
+		// wall11
+		g.setColor(Color.white);
+		g.fillRect(140, 110, 10, 240);
+
+		// wall12
+		g.setColor(Color.white);
+		g.fillRect(70, 250, 70, 10);
+
+		// wall13
+		g.setColor(Color.white);
+		g.fillRect(0, 180, 70, 10);
+
+		// wall14
+		g.setColor(Color.white);
+		g.fillRect(70, 110, 70, 10);
+
+		// wall15
+		g.setColor(Color.white);
+		g.fillRect(0, 40, 150, 10);
+
+		// wall16
+		g.setColor(Color.white);
+		g.fillRect(70, 110, 180, 10);
+
+		// wall17
+		g.setColor(Color.white);
+		g.fillRect(200, 40, 150, 10);
+
+		// wall18
+		g.setColor(Color.white);
+		g.fillRect(150, 340, 150, 10);
 
 		// player
 		g.setColor(Color.CYAN);
