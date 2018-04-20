@@ -1,10 +1,16 @@
+import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
 public class GameGraphics extends JPanel {
 
+	private int MouseX = 27;
+	private int MouseY = 520;
+	
+	
 	public void paint(Graphics g) {
 
 		// background
@@ -98,6 +104,19 @@ public class GameGraphics extends JPanel {
 
 		// player
 		g.setColor(Color.CYAN);
-		g.fillRect(27, 520, 15, 15);
+		g.fillRect(MouseX, MouseY, 15, 15);
+	
 	}
+
+	
+	
+	public void setMouseCoOrdinates(int x, int y) {
+		MouseX = x;
+		MouseY = y;
+		System.out.println("X: "+ MouseX+" Y: "+MouseY);
+		repaint();
+		
+	}
+
+	
 }

@@ -1,18 +1,72 @@
-import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class GameMechanics extends JPanel {
-	int x, y;
+import javax.swing.Timer;
 
-	public void moveUp() {
+public class GameMechanics implements MouseListener, MouseMotionListener, ActionListener {
+
+	private GameGraphics gg = new GameGraphics();	
+	private int x;
+	private int y;
+	private Timer timer;
+	private int delay = 8;
+	
+	public GameMechanics() {
+		timer = new Timer(delay,this);
+		timer.start();
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		timer.start();
+		gg.repaint();
+		
 	}
 
-	public void moveDown() {
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void moveLeft() {
+	@Override
+	public void mouseMoved(MouseEvent mevent) {
+			
+		gg.setMouseCoOrdinates(mevent.getX(),mevent.getY());
+			
 	}
 
-	public void moveRight() {
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		System.out.println("Chuj");
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
