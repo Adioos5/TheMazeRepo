@@ -1,13 +1,12 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 public class GameGraphics extends JPanel implements MouseListener, MouseMotionListener {
 
@@ -18,11 +17,8 @@ public class GameGraphics extends JPanel implements MouseListener, MouseMotionLi
 
 	public GameGraphics() {
 
-		
 		addMouseListener(this);
 		addMouseMotionListener(this);
-
-	
 
 	}
 
@@ -117,6 +113,14 @@ public class GameGraphics extends JPanel implements MouseListener, MouseMotionLi
 		g.setColor(Color.white);
 		g.fillRect(150, 340, 150, 10);
 
+		// tip
+		if (play != true) {
+			g.setColor(Color.yellow);
+			g.fillRect(32, 380, 6, 120);
+			g.setFont(new Font("serif", Font.TYPE1_FONT, 15));
+			g.drawString("Click on the square", 20, 370);
+		}
+
 		// player
 		g.setColor(Color.CYAN);
 		g.fillRect(MouseX - 7, MouseY - 7, 15, 15);
@@ -124,8 +128,6 @@ public class GameGraphics extends JPanel implements MouseListener, MouseMotionLi
 		g.dispose();
 
 	}
-
-
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
@@ -138,14 +140,25 @@ public class GameGraphics extends JPanel implements MouseListener, MouseMotionLi
 		if (play) {
 			MouseX = me.getX();
 			MouseY = me.getY();
-
 			repaint();
+
+		}
+		if (new Rectangle(MouseX - 7, MouseY - 7, 15, 15).intersects(new Rectangle(0, 0, 5, 600))
+				|| new Rectangle(MouseX - 7, MouseY - 7, 15, 15).intersects(new Rectangle(0, 0, 1100, 5))
+				|| new Rectangle(MouseX - 7, MouseY - 7, 15, 15).intersects(new Rectangle(1090, 0, 5, 600))
+				|| new Rectangle(MouseX - 7, MouseY - 7, 15, 15).intersects(new Rectangle(70, 567, 1100, 5))) {
+			MouseX = 34;
+			MouseY = 520;
+			play = false;
 		}
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		play = true;
+	public void mouseClicked(MouseEvent me) {
+		if (new Rectangle(me.getX() - 7, me.getY() - 7, 15, 15).intersects(new Rectangle(34, 520, 15, 15))) {
+			play = true;
+
+		}
 
 	}
 
