@@ -1,16 +1,34 @@
-import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
-public class GameGraphics extends JPanel {
+public class GameGraphics extends JPanel implements MouseListener, MouseMotionListener, ActionListener {
 
-	private int MouseX = 27;
-	private int MouseY = 520;
-	
-	
+	public int MouseX = 34;
+	public int MouseY = 520;
+	private Timer timer;
+	private int delay = 8;
+	private boolean play = false;
+
+	public GameGraphics() {
+
+		setFocusable(true);
+		setFocusTraversalKeysEnabled(false);
+		addMouseListener(this);
+		addMouseMotionListener(this);
+
+		timer = new Timer(delay, this);
+		timer.start();
+
+	}
+
 	public void paint(Graphics g) {
 
 		// background
@@ -104,19 +122,63 @@ public class GameGraphics extends JPanel {
 
 		// player
 		g.setColor(Color.CYAN);
-		g.fillRect(MouseX, MouseY, 15, 15);
-	
+		g.fillRect(MouseX - 7, MouseY - 7, 15, 15);
+
+		g.dispose();
+
 	}
 
-	
-	
-	public void setMouseCoOrdinates(int x, int y) {
-		MouseX = x;
-		MouseY = y;
-		System.out.println("X: "+ MouseX+" Y: "+MouseY);
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		timer.start();
 		repaint();
-		
+
 	}
 
-	
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent me) {
+		if (play) {
+			MouseX = me.getX();
+			MouseY = me.getY();
+
+			repaint();
+		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		play = true;
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
