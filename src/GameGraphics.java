@@ -9,23 +9,20 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GameGraphics extends JPanel implements MouseListener, MouseMotionListener, ActionListener {
+public class GameGraphics extends JPanel implements MouseListener, MouseMotionListener {
 
 	public int MouseX = 34;
 	public int MouseY = 520;
-	private Timer timer;
-	private int delay = 8;
+
 	private boolean play = false;
 
 	public GameGraphics() {
 
-		setFocusable(true);
-		setFocusTraversalKeysEnabled(false);
+		
 		addMouseListener(this);
 		addMouseMotionListener(this);
 
-		timer = new Timer(delay, this);
-		timer.start();
+	
 
 	}
 
@@ -128,12 +125,7 @@ public class GameGraphics extends JPanel implements MouseListener, MouseMotionLi
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		timer.start();
-		repaint();
 
-	}
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
