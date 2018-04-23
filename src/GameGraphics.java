@@ -157,7 +157,7 @@ public class GameGraphics extends JPanel implements MouseListener, MouseMotionLi
 	public void mouseClicked(MouseEvent me) {
 		if (new Rectangle(me.getX() - 7, me.getY() - 7, 15, 15).intersects(new Rectangle(34, 520, 15, 15))) {
 			play = true;
-
+			repaint();
 		}
 
 	}
