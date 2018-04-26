@@ -1,44 +1,49 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class MenuGraphics {
-	// mg
-	public JFrame Menu = new JFrame("The Maze");
-	JButton Play = new JButton("Play");
-	JButton Exit = new JButton("Exit");
+
+	JButton play = new JButton("Play");
+	JButton exit = new JButton("Exit");
+	JButton settings = new JButton("Settings");
+
+	static JFrame frame = new JFrame();
 
 	int menuWidth = 100;
 	int menuHeight = 30;
-	int menuY = 450; // miejsce w ktorym jest guzik
+	int menuY = 450;
 	int WIDTH = 500;
 	int HEIGHT = 540;
 
-	public void Menu() {
+	public void runMenu() {
 
-		Menu.setResizable(false);
-		Menu.setSize(WIDTH, HEIGHT);
-		Menu.setLayout(null);
-		Menu.setLocationRelativeTo(null);
-		Menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		play.setSize(menuWidth, menuHeight);
+		play.setLocation(50, 150);
+		play.addActionListener(new MenuMechanics(play, exit, settings));
 
-		Play.setSize(menuWidth, menuHeight);
-		Play.setLocation(180, menuY);
-		Menu.add(Play);
-		// dodac action listenera
+		settings.setLocation(50, 225);
+		settings.setSize(menuWidth, menuHeight);
+		settings.addActionListener(new MenuMechanics(play, exit, settings));
 
-		Exit.setSize(menuWidth, menuHeight);
-		Exit.setLocation(320, menuY);
-		Menu.add(Exit);
-		Exit.addActionListener(new ActionListener() {
+		exit.setLocation(50, 300);
+		exit.setSize(menuWidth, menuHeight);
+		exit.addActionListener(new MenuMechanics(play, exit, settings));
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		frame.add(play);
+		frame.add(settings);
+		frame.add(exit);
 
+		frame.setResizable(false);
+		frame.setSize(WIDTH, HEIGHT);
+		frame.setLayout(null);
+		frame.setTitle("The Maze");
+		frame.setLocation(430, 80);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
+
+	public void closeWindow() {
+		frame.dispose();
 	}
 }

@@ -2,7 +2,7 @@ import javax.swing.JFrame;
 
 public class GameFrame {
 
-	public void run() {
+	public void runGame() {
 		JFrame frame = new JFrame();
 		
 		GameGraphics gg = new GameGraphics();
