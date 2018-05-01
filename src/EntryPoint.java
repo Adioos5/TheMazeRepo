@@ -1,14 +1,17 @@
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import java.util.Arrays;
+
 
 public class EntryPoint {
 	
 	public static void main(String[] args) {
-		MenuGraphics mg = new MenuGraphics();
+
+		TileMap tl = new TileMap();
+		int[][] readMap = tl.readMap();
+		System.out.println(Arrays.deepToString(readMap));
+
+		MenuGraphics mg = new MenuGraphics(readMap);
 		mg.runMenu();
 	}
 

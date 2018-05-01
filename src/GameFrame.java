@@ -1,17 +1,26 @@
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class GameFrame {
+
+public class GameFrame extends JFrame{
+	private int[][] tileMap;
+	private JPanel panel;
+	public GameFrame(int[][] tileMap) {
+		this.tileMap = tileMap;
+	}
 
 	public void runGame() {
-		JFrame frame = new JFrame();
-		
+
 		GameGraphics gg = new GameGraphics();
-		frame.setBounds(100, 50, 1100, 600);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("The Maze");
-		frame.setVisible(true);
-		frame.add(gg);
+		panel = new TileMapPanel(tileMap);
+
+		add(panel);
+		setBounds(100, 50, 640, 414);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("The Maze");
+		setVisible(true);
+		add(gg);
 
 	}
 }

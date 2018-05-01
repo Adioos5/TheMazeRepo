@@ -15,20 +15,24 @@ public class MenuGraphics {
 	int menuY = 450;
 	int WIDTH = 500;
 	int HEIGHT = 540;
+	int[][] readMap;
+	public MenuGraphics(int[][] readMap) {
+		this.readMap = readMap;
+	}
 
 	public void runMenu() {
 
 		play.setSize(menuWidth, menuHeight);
 		play.setLocation(50, 150);
-		play.addActionListener(new MenuMechanics(play, exit, settings));
+		play.addActionListener(new MenuMechanics(play, exit, settings, readMap));
 
 		settings.setLocation(50, 225);
 		settings.setSize(menuWidth, menuHeight);
-		settings.addActionListener(new MenuMechanics(play, exit, settings));
+		settings.addActionListener(new MenuMechanics(play, exit, settings, readMap));
 
 		exit.setLocation(50, 300);
 		exit.setSize(menuWidth, menuHeight);
-		exit.addActionListener(new MenuMechanics(play, exit, settings));
+		exit.addActionListener(new MenuMechanics(play, exit, settings, readMap));
 
 		frame.add(play);
 		frame.add(settings);
