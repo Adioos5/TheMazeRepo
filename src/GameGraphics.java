@@ -12,20 +12,16 @@ public class GameGraphics extends JPanel implements MouseListener, MouseMotionLi
 
 	public int MouseX = 34;
 	public int MouseY = 320;
-
+	private int tileMap[][];
 
 	private boolean play = false;
-
 
 	public GameGraphics() {
 
 		addMouseListener(this);
 		addMouseMotionListener(this);
 
-
 	}
-
-
 
 	public void paint(Graphics g) {
 		// tip
@@ -54,6 +50,8 @@ public class GameGraphics extends JPanel implements MouseListener, MouseMotionLi
 
 	@Override
 	public void mouseMoved(MouseEvent me) {
+		
+
 		if (play) {
 			MouseX = me.getX();
 			MouseY = me.getY();
@@ -68,10 +66,12 @@ public class GameGraphics extends JPanel implements MouseListener, MouseMotionLi
 			MouseY = 320;
 			play = false;
 		}
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent me) {
+		
 		if (new Rectangle(me.getX() - 7, me.getY() - 7, 15, 15).intersects(new Rectangle(34, 320, 15, 15))) {
 			play = true;
 			repaint();

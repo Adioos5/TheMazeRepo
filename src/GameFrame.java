@@ -10,17 +10,14 @@ public class GameFrame extends JFrame{
 	}
 
 	public void runGame() {
-
-		GameGraphics gg = new GameGraphics();
 		panel = new TileMapPanel(tileMap);
 
-		add(panel);
 		setBounds(100, 50, 640, 414);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("The Maze");
 		setVisible(true);
-		add(gg);
+		add(panel);
 
 	}
 }

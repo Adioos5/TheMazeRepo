@@ -16,6 +16,7 @@ public class MenuGraphics {
 	int WIDTH = 500;
 	int HEIGHT = 540;
 	int[][] readMap;
+	
 	public MenuGraphics(int[][] readMap) {
 		this.readMap = readMap;
 	}
