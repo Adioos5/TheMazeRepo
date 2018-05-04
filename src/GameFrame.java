@@ -12,7 +12,7 @@ public class GameFrame extends JFrame{
 	public void runGame() {
 		panel = new TileMapPanel(tileMap);
 
-		setBounds(100, 50, 640, 414);
+		setBounds(100, 50, 630, 414);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("The Maze");

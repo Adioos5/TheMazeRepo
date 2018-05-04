@@ -1,10 +1,11 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,26 +13,33 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class TileMapPanel extends JPanel implements MouseListener, MouseMotionListener {
+public class TileMapPanel extends JPanel implements KeyListener {
 
 	File grass_0 = new File("Grass_0.png");
 	File bush_6 = new File("Bush_6.png");
+	File hero = new File("attack_2.png");
 	private int[][] tileMap;
 	private int tileSize = 16;
+	BufferedImage biHero;
 	public BufferedImage bi;
-	public int MouseX = 34;
-	public int MouseY = 320;
+	private int playerX = 20;
+	private int playerY = 305;
 	private boolean play = false;
-	
+	private boolean right = false;
+	private boolean left = true;
+
 	public TileMapPanel(int[][] tileMap) {
 		this.tileMap = tileMap;
-		addMouseMotionListener(this);
-		addMouseListener(this);
+
+		addKeyListener(this);
+		setFocusable(true);
+		setFocusTraversalKeysEnabled(false);
+
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		Graphics g2 = g.create();
 
 		// map
@@ -53,75 +61,93 @@ public class TileMapPanel extends JPanel implements MouseListener, MouseMotionLi
 				g2.drawImage(bi, i * tileSize, j * tileSize, tileSize, tileSize, null);
 			}
 		}
+
 		// tip
 		if (play != true) {
 
 			g2.setColor(Color.yellow);
 			g2.fillRect(32, 180, 6, 120);
 			g2.setFont(new Font("serif", Font.TYPE1_FONT, 15));
-			g2.drawString("Click on the square", 20, 170);
+			g2.drawString("Press any button", 20, 170);
 
 		}
 
 		// player
-		g2.setColor(Color.CYAN);
-		g2.fillRect(MouseX - 7, MouseY - 7, 8, 8);
+			try {
+				biHero = ImageIO.read(hero);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			g2.drawImage(biHero, playerX, playerY, 30, 30, null, null);
 
+		
 		g2.dispose();
-
-	}
+	}	
 
 	private int getMapHeight(int[][] tileMap) {
 		return tileMap[0].length;
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void keyPressed(KeyEvent e) {
 
-	}
+		play = true;
 
-	@Override
-	public void mouseMoved(MouseEvent me) {
-		if (play) {
-			MouseX = me.getX();
-			MouseY = me.getY();
-			repaint();
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			moveRight();
 
 		}
 
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent me) {
-		if (new Rectangle(me.getX() - 7, me.getY() - 7, 15, 15).intersects(new Rectangle(34, 320, 15, 15))) {
-			play = true;
-			repaint();
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			moveLeft();
 		}
 
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			moveUp();
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			moveDown();
+		}
+
+		repaint();
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
+	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
+	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+	private void moveRight() {
+		playerX += 20;
+
+		right = true;
+		left = false;
+	}
+
+	private void moveLeft() {
+		playerX -= 20;
+
+		right = false;
+		left = true;
+	}
+
+	private void moveUp() {
+		playerY -= 20;
 
 	}
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+	private void moveDown() {
+		playerY += 20;
 
 	}
+
 }
