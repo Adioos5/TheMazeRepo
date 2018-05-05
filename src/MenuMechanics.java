@@ -23,7 +23,7 @@ public class MenuMechanics implements ActionListener {
 
 		MenuGraphics mg = new MenuGraphics(tileMap);
 		GameFrame gf = new GameFrame(tileMap);
-
+		
 		if (e.getSource() == play) {
 			gf.runGame();
 			mg.closeWindow();

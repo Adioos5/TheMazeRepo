@@ -1,19 +1,19 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
-public class TileMapPanel extends JPanel implements KeyListener {
+public class TileMapPanel extends JPanel implements KeyListener, ActionListener {
 
 	File grass_0 = new File("Grass_0.png");
 	File bush_6 = new File("Bush_6.png");
@@ -24,24 +24,27 @@ public class TileMapPanel extends JPanel implements KeyListener {
 	public BufferedImage bi;
 	private int playerX = 20;
 	private int playerY = 305;
+	private int delay = 1;
 	private boolean play = false;
-	private boolean right = false;
-	private boolean left = true;
-
-	public TileMapPanel(int[][] tileMap) {
+	private int secounds;
+	TimeCounter tc; 
+	Timer timer;
+	public TileMapPanel(int[][] tileMap) {	
+		tc = new TimeCounter();
 		this.tileMap = tileMap;
-
+		
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 
+		timer = new Timer(delay,this);
+		timer.start();
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics g2 = g.create();
-
 		// map
 		for (int i = 0; i < tileMap.length; i++) {
 			for (int j = 0; j < getMapHeight(tileMap); j++) {
@@ -72,18 +75,29 @@ public class TileMapPanel extends JPanel implements KeyListener {
 
 		}
 
-		// player
-			try {
-				biHero = ImageIO.read(hero);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			g2.drawImage(biHero, playerX, playerY, 30, 30, null, null);
-
+		//timeCounter
+		g2.setColor(Color.white);
+		g2.setFont(new Font("serif", Font.TYPE1_FONT, 30));
+	
+		if(secounds==0) {
+			g2.drawString("Time left: 1:00", 230, 50);			
+		} else if(secounds>0 && secounds<=50){
+			g2.drawString("Time left: 0:"+(60 - secounds), 230, 50);			
+		} else {
+			g2.drawString("Time left: 0:0"+(60 - secounds), 230, 50);
+		}
 		
+		// player
+		try {
+			biHero = ImageIO.read(hero);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		g2.drawImage(biHero, playerX, playerY, 30, 30, null, null);
+
 		g2.dispose();
-	}	
+	}
 
 	private int getMapHeight(int[][] tileMap) {
 		return tileMap[0].length;
@@ -92,6 +106,10 @@ public class TileMapPanel extends JPanel implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 
+		if (!play) {
+			Thread t = new TimeCounter();
+			t.start();
+		}
 		play = true;
 
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -129,15 +147,11 @@ public class TileMapPanel extends JPanel implements KeyListener {
 	private void moveRight() {
 		playerX += 20;
 
-		right = true;
-		left = false;
 	}
 
 	private void moveLeft() {
 		playerX -= 20;
 
-		right = false;
-		left = true;
 	}
 
 	private void moveUp() {
@@ -149,5 +163,16 @@ public class TileMapPanel extends JPanel implements KeyListener {
 		playerY += 20;
 
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		secounds = tc.getSecounds();
+		timer.start();
+		repaint();
+		
+	}
+
+
+
 
 }
