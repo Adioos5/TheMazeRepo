@@ -20,7 +20,7 @@ public class TileMapReader {
     private List<String> readFile() {
         List<String> lines = new ArrayList<>();
         URL mapFileUrl = ClassLoader.getSystemResource(MAP_FILE);
-        
+
         try {
             lines = Files.readAllLines(Paths.get(mapFileUrl.toURI()));
         } catch (IOException e) {
