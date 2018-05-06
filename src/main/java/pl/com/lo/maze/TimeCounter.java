@@ -2,7 +2,7 @@ package pl.com.lo.maze;
 
 public class TimeCounter extends Thread {
 
-    static int secounds = 0;
+    private int secounds = 0;
 
     @Override
     public void run() {

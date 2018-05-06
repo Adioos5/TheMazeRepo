@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileMap {
+public class TileMapReader {
 
     private static final String MAP_FILE = "tile_map.txt";
 

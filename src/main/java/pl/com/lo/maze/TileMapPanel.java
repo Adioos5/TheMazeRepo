@@ -19,173 +19,179 @@ import javax.swing.Timer;
 
 public class TileMapPanel extends JPanel implements KeyListener, ActionListener {
 
-    File grass_0;
-    File bush_6;
-    File hero;
-    private int[][] tileMap;
-    private int tileSize = 16;
-    BufferedImage biHero;
-    public BufferedImage bi;
-    private int playerX = 20;
-    private int playerY = 305;
-    private int delay = 1;
-    private boolean play = false;
-    private int secounds;
-    TimeCounter tc;
-    Timer timer;
+	private File grass_0;
+	private File bush_6;
+	private File hero;
 
-    public TileMapPanel(int[][] tileMap) {
-        URL grassResourceUrl = ClassLoader.getSystemResource("images/Grass_0.png");
-        URL bushResourceUrl = ClassLoader.getSystemResource("images/Bush_6.png");
-        URL attackResourceUrl = ClassLoader.getSystemResource("images/attack_2.png");
-        try {
-            grass_0 = new File(grassResourceUrl.toURI());
-            bush_6 = new File(bushResourceUrl.toURI());
-            hero = new File(attackResourceUrl.toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        
-        tc = new TimeCounter();
-        this.tileMap = tileMap;
+	private int[][] tileMap;
 
-        addKeyListener(this);
-        setFocusable(true);
-        setFocusTraversalKeysEnabled(false);
+	private static final int tileSize = 16;
+	private static final int delay = 1;
 
-        timer = new Timer(delay, this);
-        timer.start();
-    }
+	private int playerX = 20;
+	private int playerY = 305;
+	private int secounds;
 
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics g2 = g.create();
-        // map
-        for (int i = 0; i < tileMap.length; i++) {
-            for (int j = 0; j < getMapHeight(tileMap); j++) {
-                if (tileMap[i][j] == 0) {
-                    try {
-                        bi = ImageIO.read(grass_0);
-                    } catch (IOException e) {
-                    }
-                }
-                if (tileMap[i][j] == 6) {
-                    try {
-                        bi = ImageIO.read(bush_6);
-                    } catch (IOException e) {
-                    }
+	private boolean play = false;
 
-                }
-                g2.drawImage(bi, i * tileSize, j * tileSize, tileSize, tileSize, null);
-            }
-        }
+	private BufferedImage biHero;
+	private BufferedImage bi;
+	private TimeCounter tc;
+	private Timer timer;
 
-        // tip
-        if (play != true) {
+	public TileMapPanel(int[][] tileMap) {
 
-            g2.setColor(Color.yellow);
-            g2.fillRect(32, 180, 6, 120);
-            g2.setFont(new Font("serif", Font.TYPE1_FONT, 15));
-            g2.drawString("Press any button", 20, 170);
+		URL grassResourceUrl = ClassLoader.getSystemResource("images/Grass_0.png");
+		URL bushResourceUrl = ClassLoader.getSystemResource("images/Bush_6.png");
+		URL attackResourceUrl = ClassLoader.getSystemResource("images/attack_2.png");
+		try {
+			grass_0 = new File(grassResourceUrl.toURI());
+			bush_6 = new File(bushResourceUrl.toURI());
+			hero = new File(attackResourceUrl.toURI());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 
-        }
+		tc = new TimeCounter();
+		this.tileMap = tileMap;
 
-        // timeCounter
-        g2.setColor(Color.white);
-        g2.setFont(new Font("serif", Font.TYPE1_FONT, 30));
+		addKeyListener(this);
+		setFocusable(true);
+		setFocusTraversalKeysEnabled(false);
 
-        if (secounds == 0) {
-            g2.drawString("Time left: 1:00", 230, 50);
-        } else if (secounds > 0 && secounds <= 50) {
-            g2.drawString("Time left: 0:" + (60 - secounds), 230, 50);
-        } else {
-            g2.drawString("Time left: 0:0" + (60 - secounds), 230, 50);
-        }
+		timer = new Timer(delay, this);
+		timer.start();
+	}
 
-        // player
-        try {
-            biHero = ImageIO.read(hero);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        g2.drawImage(biHero, playerX, playerY, 30, 30, null, null);
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics g2 = g.create();
+		// map
+		for (int i = 0; i < tileMap.length; i++) {
+			for (int j = 0; j < getMapHeight(tileMap); j++) {
+				if (tileMap[i][j] == 0) {
+					try {
+						bi = ImageIO.read(grass_0);
+					} catch (IOException e) {
+					}
+				}
+				if (tileMap[i][j] == 6) {
+					try {
+						bi = ImageIO.read(bush_6);
+					} catch (IOException e) {
+					}
 
-        g2.dispose();
-    }
+				}
+				g2.drawImage(bi, i * tileSize, j * tileSize, tileSize, tileSize, null);
+			}
+		}
 
-    private int getMapHeight(int[][] tileMap) {
-        return tileMap[0].length;
-    }
+		// tip
+		if (play != true) {
 
-    @Override
-    public void keyPressed(KeyEvent e) {
+			g2.setColor(Color.yellow);
+			g2.fillRect(32, 180, 6, 120);
+			g2.setFont(new Font("serif", Font.TYPE1_FONT, 15));
+			g2.drawString("Press any button", 20, 170);
 
-        if (!play) {
-            Thread t = new TimeCounter();
-            t.start();
-        }
-        play = true;
+		}
 
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            moveRight();
+		// timeCounter
+		g2.setColor(Color.white);
+		g2.setFont(new Font("serif", Font.TYPE1_FONT, 30));
 
-        }
+		if (secounds == 0) {
+			g2.drawString("Time left: 1:00", 230, 50);
+		} else if (secounds > 0 && secounds <= 50) {
+			g2.drawString("Time left: 0:" + (60 - secounds), 230, 50);
+		} else {
+			g2.drawString("Time left: 0:0" + (60 - secounds), 230, 50);
+		}
 
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            moveLeft();
-        }
+		// player
+		try {
+			biHero = ImageIO.read(hero);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		g2.drawImage(biHero, playerX, playerY, 30, 30, null, null);
 
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            moveUp();
-        }
+		g2.dispose();
+	}
 
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            moveDown();
-        }
+	private int getMapHeight(int[][] tileMap) {
+		return tileMap[0].length;
+	}
 
-        repaint();
-    }
+	@Override
+	public void keyPressed(KeyEvent e) {
 
-    @Override
-    public void keyReleased(KeyEvent arg0) {
-        // TODO Auto-generated method stub
+		if (!play) {
+			Thread t = new TimeCounter();
+			t.start();
+		}
+		play = true;
 
-    }
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			moveRight();
 
-    @Override
-    public void keyTyped(KeyEvent arg0) {
-        // TODO Auto-generated method stub
+		}
 
-    }
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			moveLeft();
+		}
 
-    private void moveRight() {
-        playerX += 20;
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			moveUp();
+		}
 
-    }
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			moveDown();
+		}
 
-    private void moveLeft() {
-        playerX -= 20;
+		repaint();
+	}
 
-    }
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
 
-    private void moveUp() {
-        playerY -= 20;
+	}
 
-    }
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
 
-    private void moveDown() {
-        playerY += 20;
+	}
 
-    }
+	private void moveRight() {
+		playerX += 20;
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        secounds = tc.getSecounds();
-        timer.start();
-        repaint();
+	}
 
-    }
+	private void moveLeft() {
+		playerX -= 20;
+
+	}
+
+	private void moveUp() {
+		playerY -= 20;
+
+	}
+
+	private void moveDown() {
+		playerY += 20;
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		secounds = tc.getSecounds();
+		timer.start();
+		repaint();
+
+	}
 
 }

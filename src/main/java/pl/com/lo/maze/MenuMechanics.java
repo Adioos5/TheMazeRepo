@@ -7,37 +7,37 @@ import javax.swing.JButton;
 
 public class MenuMechanics implements ActionListener {
 
-    JButton play;
-    JButton exit;
-    JButton settings;
-    private int[][] tileMap;
+	private JButton play;
+	private JButton exit;
+	private JButton settings;
+	private int[][] tileMap;
 
-    public MenuMechanics(JButton b1, JButton b2, JButton b3, int[][] tileMap) {
-        play = b1;
-        exit = b2;
-        settings = b3;
-        this.tileMap = tileMap;
-    }
+	public MenuMechanics(JButton b1, JButton b2, JButton b3, int[][] tileMap) {
+		play = b1;
+		exit = b2;
+		settings = b3;
+		this.tileMap = tileMap;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 
-        MenuGraphics mg = new MenuGraphics(tileMap);
-        GameFrame gf = new GameFrame(tileMap);
+		MenuWindow mw = new MenuWindow(tileMap);
+		GameFrame gf = new GameFrame(tileMap);
 
-        if (e.getSource() == play) {
-            gf.runGame();
-            mg.closeWindow();
-        }
+		if (e.getSource() == play) {
+			gf.initializeGame();
+			mw.closeMenu();
+		}
 
-        if (e.getSource() == exit) {
-            mg.closeWindow();
-        }
+		if (e.getSource() == exit) {
+			mw.closeMenu();
+		}
 
-        if (e.getSource() == settings) {
-            // ustawienia
-        }
+		if (e.getSource() == settings) {
+			// ustawienia
+		}
 
-    }
+	}
 
 }

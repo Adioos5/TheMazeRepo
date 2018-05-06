@@ -4,11 +4,10 @@ public class EntryPoint {
 
     public static void main(String[] args) {
 
-        TileMap tl = new TileMap();
+        TileMapReader tl = new TileMapReader();
         int[][] readMap = tl.readMap();
 
-        MenuGraphics mg = new MenuGraphics(readMap);
-        mg.runMenu();
+        new MenuWindow(readMap);
     }
 
 }
