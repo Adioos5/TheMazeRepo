@@ -26,8 +26,8 @@ public class TileMapPanel extends JPanel implements KeyListener, ActionListener 
 	private int[][] tileMap;
 
 	private static final int tileSize = 16;
-	private static final int delay = 1;
 
+	private int delay = 1;
 	private int playerX = 20;
 	private int playerY = 305;
 	private int secounds;
