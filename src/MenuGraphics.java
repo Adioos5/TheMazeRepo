@@ -1,3 +1,4 @@
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,14 +10,15 @@ public class MenuGraphics {
 	JButton settings = new JButton("Settings");
 
 	static JFrame frame = new JFrame();
-
+	ImageIcon icn;
+	
 	int menuWidth = 100;
 	int menuHeight = 30;
 	int menuY = 450;
 	int WIDTH = 500;
 	int HEIGHT = 540;
 	int[][] readMap;
-	
+
 	public MenuGraphics(int[][] readMap) {
 		this.readMap = readMap;
 	}
@@ -39,6 +41,8 @@ public class MenuGraphics {
 		frame.add(settings);
 		frame.add(exit);
 
+		icn = new ImageIcon("TheMazeIcon.jpg");
+		frame.setIconImage(icn.getImage());
 		frame.setResizable(false);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setLayout(null);

@@ -29,6 +29,7 @@ public class TileMapPanel extends JPanel implements KeyListener, ActionListener 
 	private int secounds;
 	TimeCounter tc; 
 	Timer timer;
+	
 	public TileMapPanel(int[][] tileMap) {	
 		tc = new TimeCounter();
 		this.tileMap = tileMap;

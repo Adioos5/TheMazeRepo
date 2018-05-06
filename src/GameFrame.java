@@ -1,3 +1,4 @@
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -5,13 +6,16 @@ import javax.swing.JPanel;
 public class GameFrame extends JFrame{
 	private int[][] tileMap;
 	private JPanel panel;
+	ImageIcon icn;
 	public GameFrame(int[][] tileMap) {
 		this.tileMap = tileMap;
 	}
 
 	public void runGame() {
 		panel = new TileMapPanel(tileMap);
-
+		icn = new ImageIcon("TheMazeIcon.jpg");
+		
+		setIconImage(icn.getImage());
 		setBounds(100, 50, 630, 414);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

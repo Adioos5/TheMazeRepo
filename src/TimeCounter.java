@@ -7,8 +7,8 @@ public class TimeCounter extends Thread {
 	public void run() {
 
 		while (secounds != 60) {
+			
 			secounds++;
-
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
