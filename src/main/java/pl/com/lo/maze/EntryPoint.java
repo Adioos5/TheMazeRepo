@@ -11,14 +11,15 @@ import javax.imageio.ImageIO;
 public class EntryPoint {
     private static int[][] readMap;
     private static Context context;
+    private static Player player;
     private static URL gameIconResourceUrl;
     private static URL grassResourceUrl;
     private static URL bushResourceUrl;
     private static URL playerResourceUrl;
 
-    private static BufferedImage grass;
-    private static BufferedImage bush;
-    private static BufferedImage player;
+    private static BufferedImage grassImg;
+    private static BufferedImage bushImg;
+    private static BufferedImage playerImg;
 
     public static void main(String[] args) throws URISyntaxException, IOException {
         readAllFiles();
@@ -38,15 +39,16 @@ public class EntryPoint {
         File bush_6 = new File(bushResourceUrl.toURI());
         File hero = new File(playerResourceUrl.toURI());
 
-        grass = ImageIO.read(grass_0);
-        bush = ImageIO.read(bush_6);
-        player = ImageIO.read(hero);
+        grassImg = ImageIO.read(grass_0);
+        bushImg = ImageIO.read(bush_6);
+        playerImg = ImageIO.read(hero);
 
-        makeAContextClassObject();
+        createClassObjects();
     }
 
-    public static void makeAContextClassObject() {
-        context = new Context(readMap, gameIconResourceUrl, grass, bush, player);
+    public static void createClassObjects() {
+        player = new Player(playerImg);
+        context = new Context(readMap, player, gameIconResourceUrl, grassImg, bushImg);
         run();
     }
 

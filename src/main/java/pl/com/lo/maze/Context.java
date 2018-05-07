@@ -7,10 +7,10 @@ import java.net.URL;
 
 public class Context implements KeyListener {
 
-    EntryPoint ep = new EntryPoint();
     private TimeCounter timeCounter;
-    private int playerX = 30;
-    private int playerY = 305;
+    private Player player;
+    private int playerX;
+    private int playerY;
     private boolean play;
     private int[][] tileMap;
     private static final String gameTitle = "The Maze";
@@ -24,15 +24,15 @@ public class Context implements KeyListener {
     private BufferedImage grass;
     private BufferedImage bush;
 
-    private BufferedImage player;
 
-    public Context(int[][] tileMap, URL resource1, BufferedImage img1, BufferedImage img2, BufferedImage img3) {
+    public Context(int[][] tileMap,Player player, URL resource1, BufferedImage img1, BufferedImage img2) {
         this.tileMap = tileMap;
-
+        this.player = player;
         this.gameIconResourceUrl = resource1;
+        playerX = player.getPlayerX();
+        playerY = player.getPlayerY();
         grass = img1;
         bush = img2;
-        player = img3;
     }
     
     public String getGameTitle() {
@@ -64,7 +64,7 @@ public class Context implements KeyListener {
     }
 
     public BufferedImage getPlayerImage() {
-        return player;
+        return player.getPlayerImage();
     }
 
     public URL getGameIconResourceUrl() {

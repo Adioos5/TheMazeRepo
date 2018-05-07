@@ -12,7 +12,7 @@ public class GameFrame extends JFrame {
     private JPanel tileMapPanel;
     private ImageIcon gameIcon;
     private Context context;
-
+    
     public GameFrame(int[][] tileMap, Context context) {
         this.tileMap = tileMap;
         this.context = context;
