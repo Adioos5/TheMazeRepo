@@ -19,10 +19,6 @@ import javax.swing.Timer;
 
 public class TileMapPanel extends JPanel implements ActionListener {
 
-    private File grass_0;
-    private File bush_6;
-    private File hero;
-
     private int[][] tileMap;
 
     private static final int tileSize = 16;
@@ -36,22 +32,13 @@ public class TileMapPanel extends JPanel implements ActionListener {
     private BufferedImage bi;
     private TimeCounter timeCounter;
     private Timer timer;
-    Context context = new Context();
+    private Context context;
 
-    public TileMapPanel(int[][] tileMap) {
-
-        URL grassResourceUrl = ClassLoader.getSystemResource("images/Grass_0.png");
-        URL bushResourceUrl = ClassLoader.getSystemResource("images/Bush_6.png");
-        URL attackResourceUrl = ClassLoader.getSystemResource("images/attack_2.png");
-        try {
-            grass_0 = new File(grassResourceUrl.toURI());
-            bush_6 = new File(bushResourceUrl.toURI());
-            hero = new File(attackResourceUrl.toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+    public TileMapPanel(int[][] tileMap, Context context) {
 
         timeCounter = new TimeCounter();
+
+        this.context = context;
         this.tileMap = context.getTileMap();
 
         addKeyListener(context);
@@ -70,22 +57,18 @@ public class TileMapPanel extends JPanel implements ActionListener {
         playerX = context.getPlayerX();
         playerY = context.getPlayerY();
         play = context.isPlay();
-       
+
         Graphics g2 = g.create();
         // map
         for (int i = 0; i < tileMap.length; i++) {
             for (int j = 0; j < getMapHeight(tileMap); j++) {
                 if (tileMap[i][j] == 0) {
-                    try {
-                        bi = ImageIO.read(grass_0);
-                    } catch (IOException e) {
-                    }
+                    bi = context.getGrassImage();
+
                 }
                 if (tileMap[i][j] == 6) {
-                    try {
-                        bi = ImageIO.read(bush_6);
-                    } catch (IOException e) {
-                    }
+
+                    bi = context.getBushImage();
 
                 }
                 g2.drawImage(bi, i * tileSize, j * tileSize, tileSize, tileSize, null);
@@ -115,12 +98,8 @@ public class TileMapPanel extends JPanel implements ActionListener {
         }
 
         // player
-        try {
-            biHero = ImageIO.read(hero);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        biHero = context.getPlayerImage();
+      
         g2.drawImage(biHero, playerX, playerY, 30, 30, null, null);
 
         g2.dispose();

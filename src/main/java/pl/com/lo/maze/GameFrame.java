@@ -11,16 +11,17 @@ public class GameFrame extends JFrame {
     private int[][] tileMap;
     private JPanel panel;
     private ImageIcon icon;
-    private URL systemResource;
+    private Context context;
 
-    public GameFrame(int[][] tileMap) {
+    public GameFrame(int[][] tileMap, Context context) {
         this.tileMap = tileMap;
+        this.context = context;
     }
 
     public void initializeGame() {
-        systemResource = ClassLoader.getSystemResource("images/TheMazeIcon.jpg");
-        panel = new TileMapPanel(tileMap);
-        icon = new ImageIcon(systemResource);
+      
+        panel = new TileMapPanel(tileMap, context);
+        icon = new ImageIcon(context.getGameIconResourceUrl());
 
         setIconImage(icon.getImage());
         setBounds(100, 50, 630, 414);

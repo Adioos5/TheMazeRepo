@@ -2,6 +2,8 @@ package pl.com.lo.maze;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.net.URL;
 
 public class Context implements KeyListener {
 
@@ -11,7 +13,38 @@ public class Context implements KeyListener {
     private int playerY = 305;
     private boolean play;
     private static final int playerSpeed = 20;
-    private int[][] tileMap = ep.getTileMap();
+    private int[][] tileMap;
+
+    private URL gameIconResourceUrl;
+    private BufferedImage grass;
+    private BufferedImage bush;
+    
+
+    private BufferedImage player;
+
+    public Context(int[][] tileMap, URL resource1, BufferedImage img1, BufferedImage img2, BufferedImage img3) {
+        this.tileMap = tileMap;
+
+        this.gameIconResourceUrl = resource1;
+        grass = img1;
+        bush = img2;
+        player = img3;
+    }
+    public BufferedImage getGrassImage() {
+        return grass;
+    }
+    
+    public BufferedImage getBushImage() {
+        return bush;
+    }
+    
+    public BufferedImage getPlayerImage() {
+        return player;
+    }
+
+    public URL getGameIconResourceUrl() {
+        return gameIconResourceUrl;
+    }
 
     public boolean isPlay() {
         return play;
