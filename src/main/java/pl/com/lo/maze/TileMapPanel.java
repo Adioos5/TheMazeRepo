@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class TileMapPanel extends JPanel implements KeyListener, ActionListener {
+public class TileMapPanel extends JPanel implements ActionListener {
 
     private File grass_0;
     private File bush_6;
@@ -28,16 +28,15 @@ public class TileMapPanel extends JPanel implements KeyListener, ActionListener 
     private static final int tileSize = 16;
 
     private int delay = 1;
-    private int playerX = 20;
-    private int playerY = 305;
     private int secounds;
-
     private boolean play = false;
-
+    private int playerX;
+    private int playerY;
     private BufferedImage biHero;
     private BufferedImage bi;
-    private TimeCounter tc;
+    private TimeCounter timeCounter;
     private Timer timer;
+    Context context = new Context();
 
     public TileMapPanel(int[][] tileMap) {
 
@@ -52,10 +51,11 @@ public class TileMapPanel extends JPanel implements KeyListener, ActionListener 
             e.printStackTrace();
         }
 
-        tc = new TimeCounter();
-        this.tileMap = tileMap;
+        timeCounter = new TimeCounter();
+        this.tileMap = context.getTileMap();
 
-        addKeyListener(this);
+        addKeyListener(context);
+
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
 
@@ -66,6 +66,11 @@ public class TileMapPanel extends JPanel implements KeyListener, ActionListener 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        playerX = context.getPlayerX();
+        playerY = context.getPlayerY();
+        play = context.isPlay();
+       
         Graphics g2 = g.create();
         // map
         for (int i = 0; i < tileMap.length; i++) {
@@ -126,69 +131,8 @@ public class TileMapPanel extends JPanel implements KeyListener, ActionListener 
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-
-        if (!play) {
-            Thread t = new TimeCounter();
-            t.start();
-        }
-        play = true;
-
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            moveRight();
-
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            moveLeft();
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            moveUp();
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            moveDown();
-        }
-
-        repaint();
-    }
-
-    @Override
-    public void keyReleased(KeyEvent arg0) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent arg0) {
-        // TODO Auto-generated method stub
-
-    }
-
-    private void moveRight() {
-        playerX += 20;
-
-    }
-
-    private void moveLeft() {
-        playerX -= 20;
-
-    }
-
-    private void moveUp() {
-        playerY -= 20;
-
-    }
-
-    private void moveDown() {
-        playerY += 20;
-
-    }
-
-    @Override
     public void actionPerformed(ActionEvent e) {
-        secounds = tc.getSecounds();
+        secounds = timeCounter.getSecounds();
         timer.start();
         repaint();
 

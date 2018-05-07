@@ -12,17 +12,17 @@ public class MenuMechanics implements ActionListener {
     private JButton settings;
     private int[][] tileMap;
 
-    public MenuMechanics(JButton b1, JButton b2, JButton b3, int[][] tileMap) {
+    public MenuMechanics(JButton b1, JButton b2, JButton b3) {
         play = b1;
         exit = b2;
         settings = b3;
-        this.tileMap = tileMap;
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        MenuWindow mw = new MenuWindow(tileMap);
+        MenuWindow mw = new MenuWindow();
         GameFrame gf = new GameFrame(tileMap);
 
         if (e.getSource() == play) {

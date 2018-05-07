@@ -21,10 +21,10 @@ public class MenuWindow {
     private static final int WIDTH = 500;
     private static final int HEIGHT = 540;
 
-    private int[][] readMap;
+   
 
-    public MenuWindow(int[][] readMap) {
-        this.readMap = readMap;
+    public MenuWindow() {
+       
 
         play = new JButton("Play");
         exit = new JButton("Exit");
@@ -39,15 +39,15 @@ public class MenuWindow {
     private void initializeMenu() {
         play.setSize(MENU_WIDTH, MENU_HEIGHT);
         play.setLocation(50, 150);
-        play.addActionListener(new MenuMechanics(play, exit, settings, readMap));
+        play.addActionListener(new MenuMechanics(play, exit, settings));
 
         settings.setLocation(50, 225);
         settings.setSize(MENU_WIDTH, MENU_HEIGHT);
-        settings.addActionListener(new MenuMechanics(play, exit, settings, readMap));
+        settings.addActionListener(new MenuMechanics(play, exit, settings));
 
         exit.setLocation(50, 300);
         exit.setSize(MENU_WIDTH, MENU_HEIGHT);
-        exit.addActionListener(new MenuMechanics(play, exit, settings, readMap));
+        exit.addActionListener(new MenuMechanics(play, exit, settings));
 
         frame.add(play);
         frame.add(settings);
