@@ -15,6 +15,7 @@ public class MenuWindow {
     private static JFrame frame = new JFrame(); // This line probably must look like that because the frame doesn't
                                                 // dispose otherwise
     Context context;
+    GameMechanics gameMechanics;
     private static final int MENU_WIDTH = 100;
     private static final int MENU_HEIGHT = 30;
     private static final int WIDTH = 500;
@@ -22,9 +23,10 @@ public class MenuWindow {
 
    
 
-    public MenuWindow(Context context) {
+    public MenuWindow(Context context, GameMechanics gameMechanics) {
        
         this.context = context;
+        this.gameMechanics = gameMechanics;
         play = new JButton("Play");
         exit = new JButton("Exit");
         settings = new JButton("Settings");    
@@ -37,15 +39,15 @@ public class MenuWindow {
     private void initializeMenu() {
         play.setSize(MENU_WIDTH, MENU_HEIGHT);
         play.setLocation(50, 150);
-        play.addActionListener(new MenuMechanics(play, exit, settings, context));
+        play.addActionListener(new MenuMechanics(play, exit, settings, context, gameMechanics));
 
         settings.setLocation(50, 225);
         settings.setSize(MENU_WIDTH, MENU_HEIGHT);
-        settings.addActionListener(new MenuMechanics(play, exit, settings ,context));
+        settings.addActionListener(new MenuMechanics(play, exit, settings ,context, gameMechanics));
 
         exit.setLocation(50, 300);
         exit.setSize(MENU_WIDTH, MENU_HEIGHT);
-        exit.addActionListener(new MenuMechanics(play, exit, settings, context));
+        exit.addActionListener(new MenuMechanics(play, exit, settings, context, gameMechanics));
 
         frame.add(play);
         frame.add(settings);

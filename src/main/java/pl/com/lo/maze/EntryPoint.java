@@ -12,6 +12,7 @@ public class EntryPoint {
     private static int[][] readMap;
     private static Context context;
     private static Player player;
+    private static GameMechanics gameMechanics;
     private static URL gameIconResourceUrl;
     private static URL grassResourceUrl;
     private static URL bushResourceUrl;
@@ -48,12 +49,13 @@ public class EntryPoint {
 
     public static void createClassObjects() {
         player = new Player(playerImg);
-        context = new Context(readMap, player, gameIconResourceUrl, grassImg, bushImg);
+        gameMechanics = new GameMechanics(player);
+        context = new Context(readMap, gameMechanics, player, gameIconResourceUrl, grassImg, bushImg);
         run();
     }
 
     public static void run() {
-        new MenuWindow(context);
+        new MenuWindow(context, gameMechanics);
 
     }
 

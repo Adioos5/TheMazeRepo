@@ -12,19 +12,20 @@ public class MenuMechanics implements ActionListener {
     private JButton settings;
     private int[][] tileMap;
     private Context context;
-    
-    public MenuMechanics(JButton b1, JButton b2, JButton b3, Context context) {
+    private GameMechanics gameMechanics;
+    public MenuMechanics(JButton b1, JButton b2, JButton b3, Context context, GameMechanics gameMechanics) {
         play = b1;
         exit = b2;
         settings = b3;
         this.context = context;
+        this.gameMechanics = gameMechanics;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        MenuWindow mw = new MenuWindow(context);
-        GameFrame gf = new GameFrame(tileMap, context);
+        MenuWindow mw = new MenuWindow(context, gameMechanics);
+        GameFrame gf = new GameFrame(tileMap, context, gameMechanics);
 
         if (e.getSource() == play) {
             gf.initializeGame();

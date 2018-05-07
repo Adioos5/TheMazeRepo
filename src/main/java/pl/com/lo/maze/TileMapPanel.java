@@ -33,15 +33,16 @@ public class TileMapPanel extends JPanel implements ActionListener {
     private TimeCounter timeCounter;
     private Timer timer;
     private Context context;
-
-    public TileMapPanel(int[][] tileMap, Context context) {
+    private GameMechanics gameMechanics;
+    
+    public TileMapPanel(int[][] tileMap, Context context, GameMechanics gameMechanics) {
 
         timeCounter = new TimeCounter();
-
+        this.gameMechanics = gameMechanics;
         this.context = context;
         this.tileMap = context.getTileMap();
 
-        addKeyListener(context);
+        addKeyListener(gameMechanics);
 
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);

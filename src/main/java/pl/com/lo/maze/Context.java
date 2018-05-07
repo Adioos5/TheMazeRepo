@@ -5,34 +5,32 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 
-public class Context implements KeyListener {
+public class Context {
 
-    private TimeCounter timeCounter;
+    private GameMechanics gameMechanics;
     private Player player;
-    private int playerX;
-    private int playerY;
-    private boolean play;
+   
     private int[][] tileMap;
     private static final String gameTitle = "The Maze";
-    private static final int playerSpeed = 20;
+ 
     private static final int gameWindowX = 100;
     private static final int gameWindowY = 50;
     private static final int gameWindowWidth = 630;
     private static final int gameWindowHeight = 414;
 
     private URL gameIconResourceUrl;
-    private BufferedImage grass;
-    private BufferedImage bush;
+    private BufferedImage grassImg;
+    private BufferedImage bushImg;
 
-
-    public Context(int[][] tileMap,Player player, URL resource1, BufferedImage img1, BufferedImage img2) {
+    public Context(int[][] tileMap,GameMechanics gameMechanics,Player player, URL resource1, BufferedImage img1, BufferedImage img2) {
+      
         this.tileMap = tileMap;
+        this.gameMechanics = gameMechanics;
         this.player = player;
         this.gameIconResourceUrl = resource1;
-        playerX = player.getPlayerX();
-        playerY = player.getPlayerY();
-        grass = img1;
-        bush = img2;
+    
+        grassImg = img1;
+        bushImg = img2;
     }
     
     public String getGameTitle() {
@@ -56,11 +54,11 @@ public class Context implements KeyListener {
     }
 
     public BufferedImage getGrassImage() {
-        return grass;
+        return grassImg;
     }
 
     public BufferedImage getBushImage() {
-        return bush;
+        return bushImg;
     }
 
     public BufferedImage getPlayerImage() {
@@ -72,72 +70,19 @@ public class Context implements KeyListener {
     }
 
     public boolean isPlay() {
-        return play;
+        return gameMechanics.isPlay();
     }
 
     public int getPlayerX() {
-        return playerX;
+        return gameMechanics.getPlayerX();
     }
 
     public int getPlayerY() {
-        return playerY;
+        return gameMechanics.getPlayerY();
     }
 
     public int[][] getTileMap() {
         return tileMap;
     }
 
-    @Override
-    public void keyPressed(KeyEvent ke) {
-
-        if (!play) {
-            timeCounter = new TimeCounter();
-            timeCounter.start();
-        }
-        play = true;
-
-        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-            moveRight();
-        }
-
-        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-            moveLeft();
-        }
-
-        if (ke.getKeyCode() == KeyEvent.VK_UP) {
-            moveUp();
-        }
-
-        if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-            moveDown();
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent ke) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent ke) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void moveRight() {
-        playerX += playerSpeed;
-    }
-
-    public void moveLeft() {
-        playerX -= playerSpeed;
-    }
-
-    public void moveUp() {
-        playerY -= playerSpeed;
-    }
-
-    public void moveDown() {
-        playerY += playerSpeed;
-    }
 }

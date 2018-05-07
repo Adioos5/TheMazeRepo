@@ -12,15 +12,17 @@ public class GameFrame extends JFrame {
     private JPanel tileMapPanel;
     private ImageIcon gameIcon;
     private Context context;
+    private GameMechanics gameMechanics;
     
-    public GameFrame(int[][] tileMap, Context context) {
+    public GameFrame(int[][] tileMap, Context context, GameMechanics gameMechanics) {
         this.tileMap = tileMap;
         this.context = context;
+        this.gameMechanics = gameMechanics;
     }
 
     public void initializeGame() {
 
-        tileMapPanel = new TileMapPanel(tileMap, context);
+        tileMapPanel = new TileMapPanel(tileMap, context, gameMechanics);
         gameIcon = new ImageIcon(context.getGameIconResourceUrl());
         
         int x = context.getGamewindowx();
