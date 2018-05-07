@@ -12,13 +12,17 @@ public class Context implements KeyListener {
     private int playerX = 30;
     private int playerY = 305;
     private boolean play;
-    private static final int playerSpeed = 20;
     private int[][] tileMap;
+    private static final String gameTitle = "The Maze";
+    private static final int playerSpeed = 20;
+    private static final int gameWindowX = 100;
+    private static final int gameWindowY = 50;
+    private static final int gameWindowWidth = 630;
+    private static final int gameWindowHeight = 414;
 
     private URL gameIconResourceUrl;
     private BufferedImage grass;
     private BufferedImage bush;
-    
 
     private BufferedImage player;
 
@@ -30,14 +34,35 @@ public class Context implements KeyListener {
         bush = img2;
         player = img3;
     }
+    
+    public String getGameTitle() {
+        return gameTitle;
+    }
+    
+    public int getGamewindowx() {
+        return gameWindowX;
+    }
+
+    public int getGamewindowy() {
+        return gameWindowY;
+    }
+
+    public int getGamewindowwidth() {
+        return gameWindowWidth;
+    }
+
+    public int getGamewindowheight() {
+        return gameWindowHeight;
+    }
+
     public BufferedImage getGrassImage() {
         return grass;
     }
-    
+
     public BufferedImage getBushImage() {
         return bush;
     }
-    
+
     public BufferedImage getPlayerImage() {
         return player;
     }

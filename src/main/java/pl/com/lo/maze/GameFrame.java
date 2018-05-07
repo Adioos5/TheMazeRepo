@@ -19,15 +19,21 @@ public class GameFrame extends JFrame {
     }
 
     public void initializeGame() {
-      
+
         tileMapPanel = new TileMapPanel(tileMap, context);
         gameIcon = new ImageIcon(context.getGameIconResourceUrl());
-
+        
+        int x = context.getGamewindowx();
+        int y = context.getGamewindowy();
+        int width = context.getGamewindowwidth();
+        int height = context.getGamewindowheight();
+        String title = context.getGameTitle();
+        
         setIconImage(gameIcon.getImage());
-        setBounds(100, 50, 630, 414);
+        setBounds(x, y, width, height);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("The Maze");
+        setTitle(title);
         add(tileMapPanel);
 
         runGame();
