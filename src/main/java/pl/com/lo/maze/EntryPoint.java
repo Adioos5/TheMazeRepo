@@ -48,7 +48,7 @@ public class EntryPoint {
     }
 
     public static void createClassObjects() {
-        player = new Player(playerImg);
+        player = new Player(playerImg, 25, 305);
         gameMechanics = new GameMechanics(player);
         context = new Context(readMap, gameMechanics, player, gameIconResourceUrl, grassImg, bushImg);
         run();

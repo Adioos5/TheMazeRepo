@@ -9,7 +9,7 @@ public class Context {
 
     private GameMechanics gameMechanics;
     private Player player;
-   
+    private TimeCounter timeCounter;
     private int[][] tileMap;
     private static final String gameTitle = "The Maze";
  
@@ -84,5 +84,5 @@ public class Context {
     public int[][] getTileMap() {
         return tileMap;
     }
-
+    
 }

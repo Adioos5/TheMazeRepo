@@ -24,7 +24,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
     private static final int tileSize = 16;
 
     private int delay = 1;
-    private int secounds;
+    private int seconds;
     private boolean play = false;
     private int playerX;
     private int playerY;
@@ -33,12 +33,10 @@ public class TileMapPanel extends JPanel implements ActionListener {
     private TimeCounter timeCounter;
     private Timer timer;
     private Context context;
-    private GameMechanics gameMechanics;
     
     public TileMapPanel(int[][] tileMap, Context context, GameMechanics gameMechanics) {
 
         timeCounter = new TimeCounter();
-        this.gameMechanics = gameMechanics;
         this.context = context;
         this.tileMap = context.getTileMap();
 
@@ -90,12 +88,12 @@ public class TileMapPanel extends JPanel implements ActionListener {
         g2.setColor(Color.white);
         g2.setFont(new Font("serif", Font.TYPE1_FONT, 30));
 
-        if (secounds == 0) {
+        if (seconds == 0) {
             g2.drawString("Time left: 1:00", 230, 50);
-        } else if (secounds > 0 && secounds <= 50) {
-            g2.drawString("Time left: 0:" + (60 - secounds), 230, 50);
+        } else if (seconds > 0 && seconds <= 50) {
+            g2.drawString("Time left: 0:" + (60 - seconds), 230, 50);
         } else {
-            g2.drawString("Time left: 0:0" + (60 - secounds), 230, 50);
+            g2.drawString("Time left: 0:0" + (60 - seconds), 230, 50);
         }
 
         // player
@@ -112,7 +110,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        secounds = timeCounter.getSecounds();
+        seconds = timeCounter.getSeconds();
         timer.start();
         repaint();
 

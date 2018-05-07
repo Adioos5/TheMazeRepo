@@ -14,8 +14,8 @@ public class MenuWindow {
     private ImageIcon icn;
     private static JFrame frame = new JFrame(); // This line probably must look like that because the frame doesn't
                                                 // dispose otherwise
-    Context context;
-    GameMechanics gameMechanics;
+    private Context context;
+    private GameMechanics gameMechanics;
     private static final int MENU_WIDTH = 100;
     private static final int MENU_HEIGHT = 30;
     private static final int WIDTH = 500;
