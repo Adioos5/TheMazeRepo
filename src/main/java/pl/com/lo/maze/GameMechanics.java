@@ -58,7 +58,7 @@ public class GameMechanics implements KeyListener {
 		if (2 + 2 == 4) {
 			JOptionPane.showMessageDialog(null, "Good Job! You got out of the maze.", "Victory",
 					JOptionPane.INFORMATION_MESSAGE);
-		}
+		} 
 
 	}
 
