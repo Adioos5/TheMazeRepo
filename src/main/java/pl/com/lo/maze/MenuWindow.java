@@ -29,7 +29,7 @@ public class MenuWindow {
 
         play = new JButton("Play");
         exit = new JButton("Exit");
-        settings = new JButton("Settings");
+        settings = new JButton("Help");
 
         // here object context is used for the first time. Variable icn needed game icon
         // resource url from class Context to set icon image for MenuWindow
@@ -42,8 +42,9 @@ public class MenuWindow {
     private void initializeMenu() {
         play.setSize(MENU_WIDTH, MENU_HEIGHT);
         play.setLocation(50, 150);
-        
-        // we pass objects context and gameMechanics to the MenuMechanics because they will be needed in next classes.
+
+        // we pass objects context and gameMechanics to the MenuMechanics because they
+        // will be needed in next classes.
         play.addActionListener(new MenuMechanics(play, exit, settings, context, gameMechanics));
 
         settings.setLocation(50, 225);
@@ -69,7 +70,7 @@ public class MenuWindow {
         runMenu();
     }
 
-    private void runMenu() {
+    public void runMenu() {
         // here the menu window gets visible
         frame.setVisible(true);
 

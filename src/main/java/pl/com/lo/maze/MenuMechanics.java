@@ -29,7 +29,8 @@ public class MenuMechanics implements ActionListener {
         // Here we make a GameFrame object to which we pass our two important objects.
         // Thanks to that it will be able to use them in next classes.
         GameFrame gf = new GameFrame(tileMap, context, gameMechanics);
-
+        HelpWindow hw = new HelpWindow();
+        
         if (e.getSource() == play) {
             gf.initializeGame();
             mw.closeMenu();
@@ -40,7 +41,7 @@ public class MenuMechanics implements ActionListener {
         }
 
         if (e.getSource() == settings) {
-            // ustawienia
+            hw.runHelpWindow();
         }
 
     }
