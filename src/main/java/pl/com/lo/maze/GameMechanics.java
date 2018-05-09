@@ -43,7 +43,7 @@ public class GameMechanics implements KeyListener {
             timeCounter.start();
         }
         play = true;
-
+        
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
             moveRight();
         }
