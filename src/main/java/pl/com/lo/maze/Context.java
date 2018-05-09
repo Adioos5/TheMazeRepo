@@ -14,8 +14,8 @@ public class Context {
 
     private static final int gameWindowX = 100;
     private static final int gameWindowY = 50;
-    private static final int gameWindowWidth = 630;
-    private static final int gameWindowHeight = 414;
+    private static final int gameWindowWidth = 1260;
+    private static final int gameWindowHeight = 828;
 
     private URL gameIconResourceUrl;
     private BufferedImage coinImg;

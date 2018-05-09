@@ -21,7 +21,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
 
     private int[][] tileMap;
 
-    private static final int tileSize = 16;
+    private static final int tileSize = 32;
 
     private int delay = 1;
     private int seconds;
@@ -132,7 +132,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
         // player
         // Here is the player image gotten from object context
         biHero = context.getPlayerImage();
-        g2.drawImage(biHero, playerX, playerY, 16, 16, null, null);
+        g2.drawImage(biHero, playerX, playerY, 32, 32, null, null);
 
         // help
 
