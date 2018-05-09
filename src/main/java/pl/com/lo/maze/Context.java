@@ -18,19 +18,21 @@ public class Context {
     private static final int gameWindowHeight = 828;
 
     private URL gameIconResourceUrl;
+    private BufferedImage spikesImg;
     private BufferedImage coinImg;
     private BufferedImage grassImg;
     private BufferedImage bushImg;
     private BufferedImage menuBackground;
     
     public Context(int[][] tileMap, GameMechanics gameMechanics, Player player, URL resource1, BufferedImage img1,
-            BufferedImage img2, BufferedImage img3, BufferedImage img4) {
+            BufferedImage img2, BufferedImage img3, BufferedImage img4, BufferedImage img5) {
 
         this.tileMap = tileMap;
         this.gameMechanics = gameMechanics;
         this.player = player;
         this.gameIconResourceUrl = resource1;
 
+        spikesImg = img5;
         coinImg = img4;
         grassImg = img1;
         bushImg = img2;
@@ -79,6 +81,9 @@ public class Context {
     }
 
     public BufferedImage getCoinGif() {return coinImg;}
+
+    public BufferedImage getSpikesImg() {return spikesImg;}
+
     // Here other classes can get the game icon resource Url created at the beginning of the program
     public URL getGameIconResourceUrl() {
         return gameIconResourceUrl;
