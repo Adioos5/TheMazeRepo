@@ -98,6 +98,9 @@ public class TileMapPanel extends JPanel implements ActionListener {
                     bi = context.getBushImage();
 
                 }
+                if (tileMap[i][j] == 1){
+                    bi = context.getCoinGif();
+                }
                 g2.drawImage(bi, i * tileSize, j * tileSize, tileSize, tileSize, null);
             }
         }
