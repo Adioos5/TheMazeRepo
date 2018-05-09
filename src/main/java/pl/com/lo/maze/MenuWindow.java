@@ -14,7 +14,7 @@ public class MenuWindow {
     private ImageIcon icn;
     private static JFrame frame = new JFrame(); // This line probably must look like that because the frame doesn't
                                                 // dispose otherwise
-    private MenuGraphics menuGraphics;
+    private JPanel menuGraphics;
     private Context context;
     private GameMechanics gameMechanics;
     private static final int MENU_WIDTH = 100;
@@ -28,10 +28,10 @@ public class MenuWindow {
         this.context = context;
         this.gameMechanics = gameMechanics;
 
+        menuGraphics = new MenuGraphics(context);
         play = new JButton("Play");
         exit = new JButton("Exit");
         settings = new JButton("Help");
-        menuGraphics = new MenuGraphics();
 
         // here object context is used for the first time. Variable icn needed game icon
         // resource url from class Context to set icon image for MenuWindow
@@ -60,7 +60,6 @@ public class MenuWindow {
         frame.setIconImage(icn.getImage());
         frame.setResizable(false);
         frame.setSize(WIDTH, HEIGHT);
-        frame.setLayout(null);
         frame.setTitle("The Maze");
         frame.setLocation(430, 80);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,6 +67,7 @@ public class MenuWindow {
         frame.add(settings);
         frame.add(exit);
         frame.add(menuGraphics);
+
         runMenu();
     }
 

@@ -44,7 +44,7 @@ public class EntryPoint {
         playerResourceUrl = ClassLoader.getSystemResource("images/attack_2.png");
         bushResourceUrl = ClassLoader.getSystemResource("images/Bush_6.png");
         grassResourceUrl = ClassLoader.getSystemResource("images/Grass_0.png");
-        menuBackgroundResourceUrl = ClassLoader.getSystemResource("images/Grass_0.png");
+        menuBackgroundResourceUrl = ClassLoader.getSystemResource("images/mazeBackground.jpg");
         
         // Creating files from images url
         File grass_0 = new File(grassResourceUrl.toURI());
