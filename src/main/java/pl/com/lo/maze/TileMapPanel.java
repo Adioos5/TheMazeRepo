@@ -33,7 +33,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
     private TimeCounter timeCounter;
     private Timer timer;
     private Context context;
-    
+
     public TileMapPanel(int[][] tileMap, Context context, GameMechanics gameMechanics) {
 
         timeCounter = new TimeCounter();
@@ -98,9 +98,13 @@ public class TileMapPanel extends JPanel implements ActionListener {
 
         // player
         biHero = context.getPlayerImage();
-      
         g2.drawImage(biHero, playerX, playerY, 30, 30, null, null);
 
+        // help
+
+        /*
+         * g2.setColor(Color.white); g2.fillRect(630, 16, 10, 10);
+         */
         g2.dispose();
     }
 
