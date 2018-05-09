@@ -16,6 +16,7 @@ public class EntryPoint {
     private static Player player;
     private static GameMechanics gameMechanics;
 
+    private static URL spikesUrl;
     private static URL coinGifUrl;
     private static URL gameIconResourceUrl;
     private static URL grassResourceUrl;
@@ -23,6 +24,7 @@ public class EntryPoint {
     private static URL playerResourceUrl;
     private static URL menuBackgroundResourceUrl;
 
+    private static BufferedImage spikesImg;
     private static BufferedImage coinImg;
     private static BufferedImage grassImg;
     private static BufferedImage bushImg;
@@ -42,6 +44,7 @@ public class EntryPoint {
         readMap = tl.readMap();
 
         // converting image paths into URL
+        spikesUrl = ClassLoader.getSystemResource("images/spikes.png");
         coinGifUrl = ClassLoader.getSystemResource("images/coin1.png");
         gameIconResourceUrl = ClassLoader.getSystemResource("images/TheMazeIcon.jpg");
         playerResourceUrl = ClassLoader.getSystemResource("images/attack_2.png");
@@ -50,6 +53,7 @@ public class EntryPoint {
         menuBackgroundResourceUrl = ClassLoader.getSystemResource("images/mazeBackground.jpg");
         
         // Creating files from images url
+        File spike = new File(spikesUrl.toURI());
         File coin1 = new File(coinGifUrl.toURI());
         File grass_0 = new File(grassResourceUrl.toURI());
         File bush_6 = new File(bushResourceUrl.toURI());
@@ -58,6 +62,7 @@ public class EntryPoint {
         
         // reading files and converting them into images, which we will use in the
         // TileMapPanel
+        spikesImg = ImageIO.read(spike);
         coinImg = ImageIO.read(coin1);
         grassImg = ImageIO.read(grass_0);
         bushImg = ImageIO.read(bush_6);
@@ -98,7 +103,7 @@ public class EntryPoint {
         // because it keeps changed player's coordinates from object player which will
         // be used in TileMapPanel. We pass
         // tileMap(here readMap), because then it will be used in class TileMapPanel.
-        context = new Context(readMap, gameMechanics, player, gameIconResourceUrl, grassImg, bushImg, menuBackground, coinImg);
+        context = new Context(readMap, gameMechanics, player, gameIconResourceUrl, grassImg, bushImg, menuBackground, coinImg, spikesImg);
 
         run();
     }
