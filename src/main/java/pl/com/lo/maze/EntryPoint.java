@@ -68,7 +68,7 @@ public class EntryPoint {
 
         // Class Player keeps player's informations like his image, and
         // coordinates(they will be changed later in class GameMechanics)
-        player = new Player(playerImg, 25, 305);
+        player = new Player(playerImg, 0, 352);
 
         // Class GameMechanics uses class player to change player's coordinates. This
         // class is also a KeyListener for TileMapPanel. This means, that when we will

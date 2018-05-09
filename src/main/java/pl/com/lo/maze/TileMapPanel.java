@@ -129,7 +129,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
         // player
         // Here is the player image gotten from object context
         biHero = context.getPlayerImage();
-        g2.drawImage(biHero, playerX, playerY, 30, 30, null, null);
+        g2.drawImage(biHero, playerX, playerY, 16, 16, null, null);
 
         // help
 
