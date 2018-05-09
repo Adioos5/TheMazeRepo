@@ -10,18 +10,19 @@ import javax.swing.JOptionPane;
 public class GameMechanics implements KeyListener {
 
     private TimeCounter timeCounter;
-    private Player player;
     private int playerX;
     private int playerY;
     private static final int playerSpeed = 20;
     private boolean play;
 
     public GameMechanics(Player player) {
-        this.player = player;
+        // Class game mechanics sets its own player's beginning coordinates by getting
+        // the player's coordinates from object player
         playerX = player.getPlayerX();
         playerY = player.getPlayerY();
     }
 
+    // All getters with variables changed in this class needed for class Context
     public boolean isPlay() {
         return play;
     }
@@ -37,13 +38,19 @@ public class GameMechanics implements KeyListener {
     @Override
     public void keyPressed(KeyEvent ke) {
         GameFrame gf = new GameFrame(null, null, null);
-        
+
+        // Here the thread timeCounter starts, when player presses any button at the
+        // beginning of
+        // the game. It can't start for the second time, because then more than one
+        // threads
+        // would work which would cause glitches.
         if (!play) {
             timeCounter = new TimeCounter();
             timeCounter.start();
         }
         play = true;
-        
+
+        // Methods called depending on which key we will press
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
             moveRight();
         }
@@ -59,6 +66,8 @@ public class GameMechanics implements KeyListener {
         if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
             moveDown();
         }
+        // Game ending window shows when the player(made into rectangle) intersects some
+        // rectangle placed at the end of the maze
         if (new Rectangle(playerX, playerY, 16, 16).intersects(new Rectangle(630, 16, 10, 10))) {
             gf.disposeGameWindow();
             JOptionPane.showMessageDialog(null, "Good Job! You got out of the maze.", "Victory",
@@ -78,6 +87,7 @@ public class GameMechanics implements KeyListener {
 
     }
 
+    // Here the player's coordinates are changed
     public void moveRight() {
         playerX += playerSpeed;
     }

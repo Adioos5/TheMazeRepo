@@ -21,15 +21,18 @@ public class MenuWindow {
     private static final int WIDTH = 500;
     private static final int HEIGHT = 540;
 
-   
-
     public MenuWindow(Context context, GameMechanics gameMechanics) {
-       
+        // these two lines here are needed to pass these objects to next classes like in
+        // line 43, 47 and 51
         this.context = context;
         this.gameMechanics = gameMechanics;
+
         play = new JButton("Play");
         exit = new JButton("Exit");
-        settings = new JButton("Settings");    
+        settings = new JButton("Settings");
+
+        // here object context is used for the first time. Variable icn needed game icon
+        // resource url from class Context to set icon image for MenuWindow
         icn = new ImageIcon(context.getGameIconResourceUrl());
 
         initializeMenu();
@@ -39,11 +42,13 @@ public class MenuWindow {
     private void initializeMenu() {
         play.setSize(MENU_WIDTH, MENU_HEIGHT);
         play.setLocation(50, 150);
+        
+        // we pass objects context and gameMechanics to the MenuMechanics because they will be needed in next classes.
         play.addActionListener(new MenuMechanics(play, exit, settings, context, gameMechanics));
 
         settings.setLocation(50, 225);
         settings.setSize(MENU_WIDTH, MENU_HEIGHT);
-        settings.addActionListener(new MenuMechanics(play, exit, settings ,context, gameMechanics));
+        settings.addActionListener(new MenuMechanics(play, exit, settings, context, gameMechanics));
 
         exit.setLocation(50, 300);
         exit.setSize(MENU_WIDTH, MENU_HEIGHT);
@@ -65,6 +70,7 @@ public class MenuWindow {
     }
 
     private void runMenu() {
+        // here the menu window gets visible
         frame.setVisible(true);
 
     }

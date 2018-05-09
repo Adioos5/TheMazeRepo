@@ -11,7 +11,7 @@ public class Context {
     private Player player;
     private int[][] tileMap;
     private static final String gameTitle = "The Maze";
- 
+
     private static final int gameWindowX = 100;
     private static final int gameWindowY = 50;
     private static final int gameWindowWidth = 630;
@@ -21,21 +21,23 @@ public class Context {
     private BufferedImage grassImg;
     private BufferedImage bushImg;
 
-    public Context(int[][] tileMap,GameMechanics gameMechanics,Player player, URL resource1, BufferedImage img1, BufferedImage img2) {
-      
+    public Context(int[][] tileMap, GameMechanics gameMechanics, Player player, URL resource1, BufferedImage img1,
+            BufferedImage img2) {
+
         this.tileMap = tileMap;
         this.gameMechanics = gameMechanics;
         this.player = player;
         this.gameIconResourceUrl = resource1;
-    
+
         grassImg = img1;
         bushImg = img2;
     }
-    
+
+    // All getters with variables needed for other classes
     public String getGameTitle() {
         return gameTitle;
     }
-    
+
     public int getGamewindowx() {
         return gameWindowX;
     }
@@ -52,36 +54,45 @@ public class Context {
         return gameWindowHeight;
     }
 
+    // Here other classes can get the grass image read at the beginning of the program
     public BufferedImage getGrassImage() {
         return grassImg;
     }
 
+    // Here other classes can get the bush image read at the beginning of the program
     public BufferedImage getBushImage() {
         return bushImg;
     }
 
+    // Here the player's image is being gotten from class Player
     public BufferedImage getPlayerImage() {
         return player.getPlayerImage();
     }
 
+    // Here other classes can get the game icon resource Url created at the beginning of the program
     public URL getGameIconResourceUrl() {
         return gameIconResourceUrl;
     }
 
+    // Here other classes can get a value of the play variable changed in class
+    // GameMechanics
     public boolean isPlay() {
         return gameMechanics.isPlay();
     }
 
+    // Here other classes can get playerX changed in class GameMechanics
     public int getPlayerX() {
         return gameMechanics.getPlayerX();
     }
 
+    // Here other classes can get playerY changed in class GameMechanics
     public int getPlayerY() {
         return gameMechanics.getPlayerY();
     }
 
+    // Here other classes can get the tileMap read at the beginning of the program
     public int[][] getTileMap() {
         return tileMap;
     }
-    
+
 }

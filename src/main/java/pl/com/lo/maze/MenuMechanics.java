@@ -13,6 +13,7 @@ public class MenuMechanics implements ActionListener {
     private int[][] tileMap;
     private Context context;
     private GameMechanics gameMechanics;
+
     public MenuMechanics(JButton b1, JButton b2, JButton b3, Context context, GameMechanics gameMechanics) {
         play = b1;
         exit = b2;
@@ -25,6 +26,8 @@ public class MenuMechanics implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         MenuWindow mw = new MenuWindow(context, gameMechanics);
+        // Here we make a GameFrame object to which we pass our two important objects.
+        // Thanks to that it will be able to use them in next classes.
         GameFrame gf = new GameFrame(tileMap, context, gameMechanics);
 
         if (e.getSource() == play) {

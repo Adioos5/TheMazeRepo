@@ -13,15 +13,15 @@ public class Player {
         this.playerX = playerX;
         this.playerY = playerY;
     }
-
+    // Here other classes can get the player image read at the beginning of the program
     public BufferedImage getPlayerImage() {
         return playerImg;
     }
-
+    // Here other classes can get player's beginning coordinates
     public int getPlayerX() {
         return playerX;
     }
-
+    
     public int getPlayerY() {
         return playerY;
     }
