@@ -58,7 +58,7 @@ public class EntryPoint {
         
         // reading files and converting them into images, which we will use in the
         // TileMapPanel
-     //   coinImg = ImageIO.read(coin1);
+        coinImg = ImageIO.read(coin1);
         grassImg = ImageIO.read(grass_0);
         bushImg = ImageIO.read(bush_6);
         playerImg = ImageIO.read(hero);

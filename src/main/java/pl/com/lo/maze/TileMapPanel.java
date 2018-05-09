@@ -118,15 +118,15 @@ public class TileMapPanel extends JPanel implements ActionListener {
 
         // timeCounter
         g2.setColor(Color.white);
-        g2.setFont(new Font("serif", Font.TYPE1_FONT, 30));
+        g2.setFont(new Font("serif", Font.TYPE1_FONT, 50));
 
         // Some logic to make the time counter look fine
         if (seconds == 0) {
-            g2.drawString("Time left: 1:00", 230, 50);
+            g2.drawString("Time left: 1:00", 460, 80);
         } else if (seconds > 0 && seconds <= 50) {
-            g2.drawString("Time left: 0:" + (60 - seconds), 230, 50);
+            g2.drawString("Time left: 0:" + (60 - seconds), 460, 80);
         } else {
-            g2.drawString("Time left: 0:0" + (60 - seconds), 230, 50);
+            g2.drawString("Time left: 0:0" + (60 - seconds), 460, 80);
         }
 
         // player
