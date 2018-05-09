@@ -12,8 +12,8 @@ public class GameMechanics implements KeyListener {
     private TimeCounter timeCounter;
     private int playerX;
     private int playerY;
-    private int tileSize = 16;
-    private static final int playerSpeed = 16;
+    private int tileSize = 32;
+    private static final int playerSpeed = 32;
     private boolean play;
 
     public GameMechanics(Player player) {
@@ -69,24 +69,24 @@ public class GameMechanics implements KeyListener {
         }
         // Game ending window shows when the player(made into rectangle) intersects some
         // rectangle placed at the end of the maze
-        if (new Rectangle(playerX, playerY, 16, 16).intersects(new Rectangle(630, 16, 16, 16))) {
+        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(2 * 630, 32, 32, 32))) {
             gf.disposeGameWindow();
             JOptionPane.showMessageDialog(null, "Good Job! You got out of the maze.", "Victory",
                     JOptionPane.INFORMATION_MESSAGE);
         }
-       if (new Rectangle(playerX, playerY, 16, 16).intersects(new Rectangle(-16, 368, 40 * tileSize, tileSize))) {
+       if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 368, 40 * tileSize, tileSize))) {
            moveUp();
         }
-        if (new Rectangle(playerX, playerY, 16, 16).intersects(new Rectangle(-16, 0, 40 * tileSize, tileSize))) {
+        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 0, 40 * tileSize, tileSize))) {
             moveDown();
         }
-        if (new Rectangle(playerX, playerY, 16, 16).intersects(new Rectangle(-16, 16,2 * tileSize,21 * tileSize))) {
+        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 32,2 * tileSize,21 * tileSize))) {
             moveRight();
         }
-        if (new Rectangle(playerX, playerY, 16, 16).intersects(new Rectangle(-16, 352, tileSize, tileSize))) {
+        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 352, tileSize, tileSize))) {
             moveRight();
         }
-        if (new Rectangle(playerX, playerY, 16, 16).intersects(new Rectangle(614, 32, 2 * tileSize, 23 * tileSize))) {
+        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(2 * 614, 64, 2 * tileSize, 23 * tileSize))) {
             moveLeft();
         }
 
