@@ -15,15 +15,18 @@ public class EntryPoint {
     private static Context context;
     private static Player player;
     private static GameMechanics gameMechanics;
+  
     private static URL gameIconResourceUrl;
     private static URL grassResourceUrl;
     private static URL bushResourceUrl;
     private static URL playerResourceUrl;
-
+    private static URL menuBackgroundResourceUrl;
+    
     private static BufferedImage grassImg;
     private static BufferedImage bushImg;
     private static BufferedImage playerImg;
-
+    private static BufferedImage menuBackground;
+    
     public static void main(String[] args) throws URISyntaxException, IOException {
 
         // At first the program reads all files to convert them into images.
@@ -41,18 +44,21 @@ public class EntryPoint {
         playerResourceUrl = ClassLoader.getSystemResource("images/attack_2.png");
         bushResourceUrl = ClassLoader.getSystemResource("images/Bush_6.png");
         grassResourceUrl = ClassLoader.getSystemResource("images/Grass_0.png");
-
+        menuBackgroundResourceUrl = ClassLoader.getSystemResource("images/Grass_0.png");
+        
         // Creating files from images url
         File grass_0 = new File(grassResourceUrl.toURI());
         File bush_6 = new File(bushResourceUrl.toURI());
         File hero = new File(playerResourceUrl.toURI());
-
+        File menuBackgroundFile = new File(menuBackgroundResourceUrl.toURI());
+        
         // reading files and converting them into images, which we will use in the
         // TileMapPanel
         grassImg = ImageIO.read(grass_0);
         bushImg = ImageIO.read(bush_6);
         playerImg = ImageIO.read(hero);
-
+        menuBackground = ImageIO.read(menuBackgroundFile);
+        
         createClassObjects();
     }
 
@@ -87,7 +93,7 @@ public class EntryPoint {
         // because it keeps changed player's coordinates from object player which will
         // be used in TileMapPanel. We pass
         // tileMap(here readMap), because then it will be used in class TileMapPanel.
-        context = new Context(readMap, gameMechanics, player, gameIconResourceUrl, grassImg, bushImg);
+        context = new Context(readMap, gameMechanics, player, gameIconResourceUrl, grassImg, bushImg, menuBackground);
 
         run();
     }

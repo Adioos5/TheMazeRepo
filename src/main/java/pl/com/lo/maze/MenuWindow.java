@@ -1,10 +1,10 @@
 package pl.com.lo.maze;
 
-import java.net.URL;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class MenuWindow {
 
@@ -14,6 +14,7 @@ public class MenuWindow {
     private ImageIcon icn;
     private static JFrame frame = new JFrame(); // This line probably must look like that because the frame doesn't
                                                 // dispose otherwise
+    private MenuGraphics menuGraphics;
     private Context context;
     private GameMechanics gameMechanics;
     private static final int MENU_WIDTH = 100;
@@ -30,6 +31,7 @@ public class MenuWindow {
         play = new JButton("Play");
         exit = new JButton("Exit");
         settings = new JButton("Help");
+        menuGraphics = new MenuGraphics();
 
         // here object context is used for the first time. Variable icn needed game icon
         // resource url from class Context to set icon image for MenuWindow
@@ -55,10 +57,6 @@ public class MenuWindow {
         exit.setSize(MENU_WIDTH, MENU_HEIGHT);
         exit.addActionListener(new MenuMechanics(play, exit, settings, context, gameMechanics));
 
-        frame.add(play);
-        frame.add(settings);
-        frame.add(exit);
-
         frame.setIconImage(icn.getImage());
         frame.setResizable(false);
         frame.setSize(WIDTH, HEIGHT);
@@ -66,13 +64,17 @@ public class MenuWindow {
         frame.setTitle("The Maze");
         frame.setLocation(430, 80);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        frame.add(play);
+        frame.add(settings);
+        frame.add(exit);
+        frame.add(menuGraphics);
         runMenu();
     }
 
     public void runMenu() {
         // here the menu window gets visible
         frame.setVisible(true);
+ 
 
     }
 

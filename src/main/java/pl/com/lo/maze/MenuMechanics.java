@@ -36,7 +36,7 @@ public class MenuMechanics implements ActionListener {
             mw.closeMenu();
         }
 
-        if (e.getSource() == exit) {
+        if (e.getSource() == exit) {                               
             mw.closeMenu();
         }
 

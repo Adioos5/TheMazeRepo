@@ -20,9 +20,10 @@ public class Context {
     private URL gameIconResourceUrl;
     private BufferedImage grassImg;
     private BufferedImage bushImg;
-
+    private BufferedImage menuBackground;
+    
     public Context(int[][] tileMap, GameMechanics gameMechanics, Player player, URL resource1, BufferedImage img1,
-            BufferedImage img2) {
+            BufferedImage img2, BufferedImage img3) {
 
         this.tileMap = tileMap;
         this.gameMechanics = gameMechanics;
@@ -31,6 +32,7 @@ public class Context {
 
         grassImg = img1;
         bushImg = img2;
+        menuBackground = img3;
     }
 
     // All getters with variables needed for other classes
@@ -68,12 +70,16 @@ public class Context {
     public BufferedImage getPlayerImage() {
         return player.getPlayerImage();
     }
+    
+    public BufferedImage getMenuBackgroundImage() {
+        return menuBackground;
+    }
 
     // Here other classes can get the game icon resource Url created at the beginning of the program
     public URL getGameIconResourceUrl() {
         return gameIconResourceUrl;
     }
-
+    
     // Here other classes can get a value of the play variable changed in class
     // GameMechanics
     public boolean isPlay() {
