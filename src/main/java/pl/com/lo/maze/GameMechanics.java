@@ -6,14 +6,12 @@ import java.awt.event.KeyListener;
 public class GameMechanics implements KeyListener{
    
     private TimeCounter timeCounter;
-    private Player player;
     private int playerX;
     private int playerY;
     private static final int playerSpeed = 20;
     private boolean play;
     
     public GameMechanics(Player player) {
-        this.player = player;
         playerX = player.getPlayerX();
         playerY = player.getPlayerY();
     }
