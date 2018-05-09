@@ -93,7 +93,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
                     bi = context.getGrassImage();
 
                 }
-                if (tileMap[i][j] == 6) {  
+                if (tileMap[i][j] == 6) {
                     // Here is the bush image gotten from object context
                     bi = context.getBushImage();
 
@@ -145,7 +145,8 @@ public class TileMapPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // The seconds are being changed every time, the thread time counter stops sleeping
+        // The seconds are being changed every time, the thread time counter stops
+        // sleeping
         seconds = timeCounter.getSeconds();
         timer.start();
         // Here the TileMapPanel is being repainted automatically

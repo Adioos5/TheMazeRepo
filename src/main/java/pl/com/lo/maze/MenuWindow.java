@@ -1,5 +1,7 @@
 package pl.com.lo.maze;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
