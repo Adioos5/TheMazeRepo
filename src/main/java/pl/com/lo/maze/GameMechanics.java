@@ -36,6 +36,8 @@ public class GameMechanics implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent ke) {
+        GameFrame gf = new GameFrame(null, null, null);
+        
         if (!play) {
             timeCounter = new TimeCounter();
             timeCounter.start();
@@ -58,6 +60,7 @@ public class GameMechanics implements KeyListener {
             moveDown();
         }
         if (new Rectangle(playerX, playerY, 16, 16).intersects(new Rectangle(630, 16, 10, 10))) {
+            gf.disposeGameWindow();
             JOptionPane.showMessageDialog(null, "Good Job! You got out of the maze.", "Victory",
                     JOptionPane.INFORMATION_MESSAGE);
         }
