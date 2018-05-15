@@ -117,25 +117,30 @@ public class GameMechanics implements MouseListener, MouseMotionListener {
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(2 * 630, 32, 32, 32))) {
             gf.disposeGameWindow();
             JOptionPane.showMessageDialog(null, "Good Job! You got out of the maze.", "Victory",
-                    JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);
         }
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 368, 40 * tileSize, tileSize))) {
-            moveUp();
+            playerX = 30;
+            playerY = 765;
         }
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 0, 40 * tileSize, tileSize))) {
-            moveDown();
+            playerX = 30;
+            playerY = 765;
         }
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 32, 2 * tileSize, 21 * tileSize))) {
-            moveRight();
+            playerX = 30;
+            playerY = 765;
         }
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 352, tileSize, tileSize))) {
-            moveRight();
-        }
-        if (new Rectangle(playerX, playerY, 32, 32)
+            playerX = 30;
+            playerY = 765;
+
+            if (new Rectangle(playerX, playerY, 32, 32)
                 .intersects(new Rectangle(2 * 614, 64, 2 * tileSize, 23 * tileSize))) {
-            moveLeft();
+                playerX = 30;
+                playerY = 765;
+            }
+
         }
-
     }
-
 }
