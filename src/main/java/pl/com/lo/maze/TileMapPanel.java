@@ -48,8 +48,8 @@ public class TileMapPanel extends JPanel implements ActionListener {
         // object from the constructor parameter because this object keeps the beginning
         // player's coordinates from object player created at the beginning of the
         // program
-        addKeyListener(gameMechanics);
-
+        addMouseListener(gameMechanics);
+        addMouseMotionListener(gameMechanics);
         // Without these two lines the keylistener doesn't work. I don't know why xD
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -135,7 +135,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
         // player
         // Here is the player image gotten from object context
         biHero = context.getPlayerImage();
-        g2.drawImage(biHero, playerX, playerY, 32, 32, null, null);
+        g2.drawImage(biHero, playerX-16, playerY-16, 32, 32, null, null);
 
         // help
 
