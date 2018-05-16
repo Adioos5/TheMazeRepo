@@ -18,25 +18,27 @@ public class Context {
     private static final int gameWindowHeight = 828;
 
     private URL gameIconResourceUrl;
-    private BufferedImage spikesImg;
-    private BufferedImage coinImg;
-    private BufferedImage grassImg;
-    private BufferedImage bushImg;
     private BufferedImage menuBackground;
-    
-    public Context(int[][] tileMap, GameMechanics gameMechanics, Player player, URL resource1, BufferedImage img1,
-            BufferedImage img2, BufferedImage img3, BufferedImage img4, BufferedImage img5) {
+
+    private Tile grass;
+    private Tile spikes;
+    private Tile bush;
+    private Tile coin;
+
+    public Context(int[][] tileMap, GameMechanics gameMechanics, Player player, URL resource1, Tile grass, Tile bush,
+            BufferedImage img, Tile coin, Tile spikes) {
 
         this.tileMap = tileMap;
         this.gameMechanics = gameMechanics;
         this.player = player;
         this.gameIconResourceUrl = resource1;
 
-        spikesImg = img5;
-        coinImg = img4;
-        grassImg = img1;
-        bushImg = img2;
-        menuBackground = img3;
+        this.spikes = spikes;
+        this.grass = grass;
+        this.bush = bush;
+        this.coin = coin;
+
+        menuBackground = img;
 
     }
 
@@ -61,34 +63,56 @@ public class Context {
         return gameWindowHeight;
     }
 
-    // Here other classes can get the grass image read at the beginning of the program
+    // Here other classes can get the grass image read at the beginning of the
+    // program
     public BufferedImage getGrassImage() {
-        return grassImg;
+        return grass.getTileImage();
     }
 
-    // Here other classes can get the bush image read at the beginning of the program
+    // Here other classes can get the bush image read at the beginning of the
+    // program
     public BufferedImage getBushImage() {
-        return bushImg;
+        return bush.getTileImage();
     }
 
     // Here the player's image is being gotten from class Player
     public BufferedImage getPlayerImage() {
         return player.getPlayerImage();
     }
-    
+
     public BufferedImage getMenuBackgroundImage() {
         return menuBackground;
     }
 
-    public BufferedImage getCoinGif() {return coinImg;}
+    public BufferedImage getCoinImg() {
+        return coin.getTileImage();
+    }
 
-    public BufferedImage getSpikesImg() {return spikesImg;}
+    public BufferedImage getSpikesImg() {
+        return spikes.getTileImage();
+    }
+    
+    public int getBushType() {
+        return bush.getTileType();
+    }
+    
+    public int getGrassType() {
+        return grass.getTileType();
+    }
+    
+    public int getSpikesType() {
+        return spikes.getTileType();
+    }
+    
+    public int getCoinType() {
+        return coin.getTileType();
+    }
 
-    // Here other classes can get the game icon resource Url created at the beginning of the program
+    // Here other classes can get the game icon resource Url created at the
+    // beginning of the program
     public URL getGameIconResourceUrl() {
         return gameIconResourceUrl;
     }
-
 
     // Here other classes can get a value of the play variable changed in class
     // GameMechanics

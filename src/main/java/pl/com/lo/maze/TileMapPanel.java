@@ -87,20 +87,20 @@ public class TileMapPanel extends JPanel implements ActionListener {
         // map
         for (int i = 0; i < tileMap.length; i++) {
             for (int j = 0; j < getMapHeight(tileMap); j++) {
-                if (tileMap[i][j] == 0) {
+                if (tileMap[i][j] == context.getGrassType()) {
                     // Here is the grass image gotten from object context
                     bi = context.getGrassImage();
 
                 }
-                if (tileMap[i][j] == 6) {
+                if (tileMap[i][j] == context.getBushType()) {
                     // Here is the bush image gotten from object context
                     bi = context.getBushImage();
 
                 }
-                if (tileMap[i][j] == 1){
-                    bi = context.getCoinGif();
+                if (tileMap[i][j] == context.getCoinType()){
+                    bi = context.getCoinImg();
                 }
-                if (tileMap[i][j] == 2){
+                if (tileMap[i][j] == context.getSpikesType()){
                     bi = context.getSpikesImg();
                 }
                 g2.drawImage(bi, i * tileSize, j * tileSize, tileSize, tileSize, null);
