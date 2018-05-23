@@ -1,4 +1,4 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.entity;
 
 import java.awt.image.BufferedImage;
 
@@ -6,7 +6,7 @@ public class Tile {
 
     private BufferedImage tileImage;
     private int tileType;
-    
+
     public Tile(BufferedImage tileImage, int tileType) {
         this.tileImage = tileImage;
         this.tileType = tileType;
@@ -19,7 +19,5 @@ public class Tile {
     public int getTileType() {
         return tileType;
     }
-    
-    
-    
+
 }

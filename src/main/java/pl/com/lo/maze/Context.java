@@ -1,9 +1,13 @@
 package pl.com.lo.maze;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.util.Map;
+
+import pl.com.lo.maze.entity.Player;
+import pl.com.lo.maze.entity.Tile;
+import pl.com.lo.maze.graphics.Graphics;
+import pl.com.lo.maze.logic.GameMechanics;
 
 public class Context {
 
@@ -17,32 +21,34 @@ public class Context {
     private static final int gameWindowWidth = 1260;
     private static final int gameWindowHeight = 828;
 
-    private URL gameIconResourceUrl;
+    private BufferedImage gameIconResourceUrl;
     private BufferedImage menuBackground;
 
     private Tile grass;
     private Tile spikes;
     private Tile bush;
     private Tile coin;
+    
+    private Map<Graphics, BufferedImage> graphics;
 
-    public Context(int[][] tileMap, GameMechanics gameMechanics, Player player, URL resource1, Tile grass, Tile bush,
-            BufferedImage img, Tile coin, Tile spikes) {
+    public Context(int[][] tileMap, GameMechanics gameMechanics, Player player, Tile grass, Tile bush,
+            Tile coin, Tile spikes, Map<Graphics, BufferedImage> graphics) {
+        this.graphics = graphics;
 
         this.tileMap = tileMap;
         this.gameMechanics = gameMechanics;
         this.player = player;
-        this.gameIconResourceUrl = resource1;
 
         this.spikes = spikes;
         this.grass = grass;
         this.bush = bush;
         this.coin = coin;
 
-        menuBackground = img;
+        this.gameIconResourceUrl = graphics.get(Graphics.GAME_ICON);
+        this.menuBackground = graphics.get(Graphics.MENU_BACKGROUND);
 
     }
 
-    // All getters with variables needed for other classes
     public String getGameTitle() {
         return gameTitle;
     }
@@ -63,19 +69,14 @@ public class Context {
         return gameWindowHeight;
     }
 
-    // Here other classes can get the grass image read at the beginning of the
-    // program
     public BufferedImage getGrassImage() {
         return grass.getTileImage();
     }
 
-    // Here other classes can get the bush image read at the beginning of the
-    // program
     public BufferedImage getBushImage() {
         return bush.getTileImage();
     }
 
-    // Here the player's image is being gotten from class Player
     public BufferedImage getPlayerImage() {
         return player.getPlayerImage();
     }
@@ -91,46 +92,43 @@ public class Context {
     public BufferedImage getSpikesImg() {
         return spikes.getTileImage();
     }
-    
+
     public int getBushType() {
         return bush.getTileType();
     }
-    
+
     public int getGrassType() {
         return grass.getTileType();
     }
-    
+
     public int getSpikesType() {
         return spikes.getTileType();
     }
-    
+
     public int getCoinType() {
         return coin.getTileType();
     }
 
-    // Here other classes can get the game icon resource Url created at the
-    // beginning of the program
-    public URL getGameIconResourceUrl() {
+    public BufferedImage getGameIconResourceUrl() {
         return gameIconResourceUrl;
     }
 
-    // Here other classes can get a value of the play variable changed in class
-    // GameMechanics
+    public void setGameIconResourceUrl(BufferedImage gameIconResourceUrl) {
+        this.gameIconResourceUrl = gameIconResourceUrl;
+    }
+
     public boolean isPlay() {
         return gameMechanics.isPlay();
     }
 
-    // Here other classes can get playerX changed in class GameMechanics
     public int getPlayerX() {
         return gameMechanics.getPlayerX();
     }
 
-    // Here other classes can get playerY changed in class GameMechanics
     public int getPlayerY() {
         return gameMechanics.getPlayerY();
     }
 
-    // Here other classes can get the tileMap read at the beginning of the program
     public int[][] getTileMap() {
         return tileMap;
     }

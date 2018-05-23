@@ -1,4 +1,4 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.common;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TileMapReader {
 
-    private static final String MAP_FILE = "tile_map.txt";
+    private static final String MAP_FILE = "maps/tile_map.txt";
 
     public int[][] readMap() {
         List<String> lines = readFile();

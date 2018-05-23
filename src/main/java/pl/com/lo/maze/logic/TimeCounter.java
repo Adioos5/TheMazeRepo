@@ -1,4 +1,4 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.logic;
 
 // Here's the thread TimeCounter which counts seconds(it's like a stopwatch)
 public class TimeCounter extends Thread {

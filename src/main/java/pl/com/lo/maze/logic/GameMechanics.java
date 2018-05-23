@@ -1,11 +1,14 @@
 
-package pl.com.lo.maze;
+package pl.com.lo.maze.logic;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
+
+import pl.com.lo.maze.entity.Player;
+import pl.com.lo.maze.gui.game.GameWindow;
 
 public class GameMechanics implements KeyListener {
 
@@ -38,7 +41,7 @@ public class GameMechanics implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        GameFrame gf = new GameFrame(null, null, null);
+        GameWindow gf = new GameWindow(null, null, null);
 
         // Here the thread timeCounter starts, when player presses any button at the
         // beginning of
