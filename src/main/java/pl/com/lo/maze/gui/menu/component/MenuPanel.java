@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import pl.com.lo.maze.Context;
+import pl.com.lo.maze.context.Context;
 
 @SuppressWarnings("serial")
 public class MenuPanel extends JPanel {
@@ -13,7 +13,7 @@ public class MenuPanel extends JPanel {
     private BufferedImage backgroundImage;
 
     public MenuPanel(Context context) {
-        backgroundImage = context.getMenuBackgroundImage();
+        backgroundImage = context.getMenuBackground();
     }
 
     @Override

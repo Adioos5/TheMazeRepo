@@ -15,9 +15,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-import pl.com.lo.maze.Configuration;
 import pl.com.lo.maze.common.ResourceHelper;
 import pl.com.lo.maze.common.TextFileReader;
+import pl.com.lo.maze.configuration.Configuration;
 
 @SuppressWarnings("serial")
 public class HelpDialog extends JDialog {
@@ -36,6 +36,7 @@ public class HelpDialog extends JDialog {
 
     public HelpDialog(Frame owner) {
         super(owner);
+        this.owner = owner;
         initializeDialog();
     }
 
@@ -79,6 +80,7 @@ public class HelpDialog extends JDialog {
 
     private String readHelpContentFromFile() {
         Optional<Path> pathOptional = ResourceHelper.getFilePath(Configuration.HELP_CONTENT_FILE);
-        return TextFileReader.readFile(pathOptional).collect(Collectors.joining("\n"));
+        return TextFileReader.readAsStream(pathOptional)
+            .collect(Collectors.joining("\n"));
     }
 }

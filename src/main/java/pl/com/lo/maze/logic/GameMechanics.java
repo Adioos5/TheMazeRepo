@@ -7,8 +7,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
 
-import pl.com.lo.maze.entity.Player;
-import pl.com.lo.maze.gui.game.GameWindow;
+import pl.com.lo.maze.player.Player;
 
 public class GameMechanics implements KeyListener {
 
@@ -41,7 +40,7 @@ public class GameMechanics implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        GameWindow gf = new GameWindow(null, null, null);
+//        GameWindow gf = new GameWindow(null, null, null);
 
         // Here the thread timeCounter starts, when player presses any button at the
         // beginning of
@@ -73,23 +72,24 @@ public class GameMechanics implements KeyListener {
         // Game ending window shows when the player(made into rectangle) intersects some
         // rectangle placed at the end of the maze
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(2 * 630, 32, 32, 32))) {
-            gf.disposeGameWindow();
+//            gf.disposeGameWindow();
             JOptionPane.showMessageDialog(null, "Good Job! You got out of the maze.", "Victory",
-                    JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);
         }
-       if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 368, 40 * tileSize, tileSize))) {
-           moveUp();
+        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 368, 40 * tileSize, tileSize))) {
+            moveUp();
         }
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 0, 40 * tileSize, tileSize))) {
             moveDown();
         }
-        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 32,2 * tileSize,21 * tileSize))) {
+        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 32, 2 * tileSize, 21 * tileSize))) {
             moveRight();
         }
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 352, tileSize, tileSize))) {
             moveRight();
         }
-        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(2 * 614, 64, 2 * tileSize, 23 * tileSize))) {
+        if (new Rectangle(playerX, playerY, 32, 32)
+            .intersects(new Rectangle(2 * 614, 64, 2 * tileSize, 23 * tileSize))) {
             moveLeft();
         }
 

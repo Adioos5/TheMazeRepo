@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import pl.com.lo.maze.Context;
+import pl.com.lo.maze.context.Context;
 
 public class PlayButtonListener implements ActionListener {
 

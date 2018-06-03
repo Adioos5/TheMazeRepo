@@ -1,13 +1,13 @@
-package pl.com.lo.maze.entity;
+package pl.com.lo.maze.tile;
 
 import java.awt.image.BufferedImage;
 
 public class Tile {
 
     private BufferedImage tileImage;
-    private int tileType;
+    private TileType tileType;
 
-    public Tile(BufferedImage tileImage, int tileType) {
+    public Tile(BufferedImage tileImage, TileType tileType) {
         this.tileImage = tileImage;
         this.tileType = tileType;
     }
@@ -16,7 +16,7 @@ public class Tile {
         return tileImage;
     }
 
-    public int getTileType() {
+    public TileType getTileType() {
         return tileType;
     }
 

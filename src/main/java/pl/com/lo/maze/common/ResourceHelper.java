@@ -12,10 +12,13 @@ public class ResourceHelper {
 
     private static final Logger LOGGER = Logger.getLogger(TextFileReader.class.getName());
 
+    private ResourceHelper() {
+    }
+
     public static Optional<URL> getFileUrl(String filePath) {
         Optional<URL> urlOptional = Optional.ofNullable(ClassLoader.getSystemResource(filePath));
         if (!urlOptional.isPresent()) {
-            LOGGER.warning("Failed to read URL for filePath: " + filePath);
+            LOGGER.warning(() -> "Failed to read URL for filePath: " + filePath);
         }
         return urlOptional;
     }

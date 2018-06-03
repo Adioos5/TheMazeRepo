@@ -1,4 +1,4 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.configuration;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,5 +15,8 @@ public class LoggerConfiguration {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private LoggerConfiguration() {
     }
 }

@@ -1,55 +1,31 @@
 package pl.com.lo.maze.gui.game;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pl.com.lo.maze.Context;
-import pl.com.lo.maze.logic.GameMechanics;
+import pl.com.lo.maze.context.Context;
 
-public class GameWindow {
+@SuppressWarnings("serial")
+public class GameWindow extends JFrame {
 
-    private int[][] tileMap;
-    private JPanel tileMapPanel;
-    private ImageIcon gameIcon;
+    private static final String WINDOW_TITLE = "The Maze";
+
     private Context context;
-    private GameMechanics gameMechanics;
-    private static JFrame frame = new JFrame();
+    private JPanel tileMapPanel;
 
-    public GameWindow(int[][] tileMap, Context context, GameMechanics gameMechanics) {
-        this.tileMap = tileMap;
+    public GameWindow(Context context) {
         this.context = context;
-        this.gameMechanics = gameMechanics;
     }
 
     public void initializeGame() {
-        tileMapPanel = new TileMapPanel(tileMap, context, gameMechanics);
+        tileMapPanel = new TileMapPanel(context);
 
-        gameIcon = new ImageIcon(context.getGameIconResourceUrl());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setIconImage(context.getGameIcon());
+        // setBounds(x, y, width, height);
+        setResizable(false);
+        setTitle(WINDOW_TITLE);
 
-        int x = context.getGamewindowx();
-        int y = context.getGamewindowy();
-        int width = context.getGamewindowwidth();
-        int height = context.getGamewindowheight();
-        String title = context.getGameTitle();
-
-        frame.setIconImage(gameIcon.getImage());
-        frame.setBounds(x, y, width, height);
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle(title);
-
-
-        frame.add(tileMapPanel);
-
-        runGame();
-    }
-
-    private void runGame() {
-        frame.setVisible(true);
-    }
-
-    public void disposeGameWindow() {
-        frame.dispose();
+        add(tileMapPanel);
     }
 }

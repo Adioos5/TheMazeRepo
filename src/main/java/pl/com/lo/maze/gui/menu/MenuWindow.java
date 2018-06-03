@@ -8,12 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pl.com.lo.maze.Context;
+import pl.com.lo.maze.context.Context;
 import pl.com.lo.maze.gui.menu.component.MenuPanel;
 import pl.com.lo.maze.gui.menu.listener.ExitButtonListener;
 import pl.com.lo.maze.gui.menu.listener.HelpButtonListener;
 import pl.com.lo.maze.gui.menu.listener.PlayButtonListener;
-import pl.com.lo.maze.logic.GameMechanics;
 
 @SuppressWarnings("serial")
 public class MenuWindow extends JFrame {
@@ -50,12 +49,10 @@ public class MenuWindow extends JFrame {
     private JButton settingsButton;
 
     private Context context;
-    private GameMechanics gameMechanics;
 
-    public MenuWindow(Context context, GameMechanics gameMechanics) {
+    public MenuWindow(Context context) {
         this.context = context;
-        this.gameMechanics = gameMechanics;
-        this.windowIcon = context.getGameIconResourceUrl();
+        this.windowIcon = context.getGameIcon();
 
         initializeWindow();
     }

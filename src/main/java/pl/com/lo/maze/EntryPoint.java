@@ -1,78 +1,49 @@
 package pl.com.lo.maze;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
-
-import pl.com.lo.maze.common.ImageReader;
-import pl.com.lo.maze.common.TileMapReader;
-import pl.com.lo.maze.entity.Player;
-import pl.com.lo.maze.entity.Tile;
+import pl.com.lo.maze.board.Board;
+import pl.com.lo.maze.board.BoardRawData;
+import pl.com.lo.maze.board.Boards;
+import pl.com.lo.maze.board.BoardsLoader;
+import pl.com.lo.maze.configuration.GraphicsConfigurationHelper;
+import pl.com.lo.maze.context.Context;
 import pl.com.lo.maze.graphics.Graphics;
 import pl.com.lo.maze.graphics.GraphicsLoader;
 import pl.com.lo.maze.gui.menu.MenuWindow;
-import pl.com.lo.maze.logic.GameMechanics;
 
 public class EntryPoint {
 
+    @SuppressWarnings("unused")
     private static final Logger LOGGER = Logger.getLogger(EntryPoint.class.getName());
 
-    private static int[][] readMap;
-    private static Context context;
-    private static Player player;
-    private static GameMechanics gameMechanics;
-
-    private static Map<Graphics, BufferedImage> graphics;
-
-    private static Tile spikes;
-    private static Tile coin;
-    private static Tile grass;
-    private static Tile bush;
-
-    public static void main(String[] args) throws URISyntaxException, IOException {
-        readAllFiles();
+    public static void main(String[] args) {
+        initializeConfiguration();
+        Context context = createContext();
+        run(context);
     }
 
-    public static void readAllFiles() throws URISyntaxException, IOException {
-        TileMapReader tl = new TileMapReader();
+    public static Context createContext() {
+        Map<Graphics, BufferedImage> graphics = GraphicsLoader.loadGraphics();
 
-        readMap = tl.readMap();
+        BoardsLoader boardsLoader = new BoardsLoader(graphics);
+        Map<Boards, BoardRawData> rawBoardsData = boardsLoader.loadRawBoardsData();
+        Map<Boards, Board> loadedBoards = boardsLoader.createBoards(rawBoardsData);
 
-        graphics = GraphicsLoader.loadGraphics();
-
-        createClassObjects();
-    }
-
-    public static void createClassObjects() {
-
-        spikes = new Tile(graphics.get(Graphics.SPIKES), 2);
-        coin = new Tile(graphics.get(Graphics.COIN), 1);
-        grass = new Tile(graphics.get(Graphics.GRASS), 0);
-        bush = new Tile(graphics.get(Graphics.BUSH), 6);
-        player = new Player(graphics.get(Graphics.PLAYER), 48, 716);
-        gameMechanics = new GameMechanics(player);
-
-        context = new Context(
-            readMap,
-            gameMechanics,
-            player,
-            grass,
-            bush,
-            coin,
-            spikes,
+        return new Context(
+            rawBoardsData,
+            loadedBoards,
             graphics);
-
-        run();
     }
 
-    public static void run() {
-        MenuWindow menuWindow = new MenuWindow(context, gameMechanics);
+    private static void initializeConfiguration() {
+        GraphicsConfigurationHelper.estimateMaxWindowSize();
+    }
+
+    private static void run(Context context) {
+        MenuWindow menuWindow = new MenuWindow(context);
         menuWindow.setVisible(true);
     }
 

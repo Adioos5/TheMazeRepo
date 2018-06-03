@@ -10,7 +10,7 @@ public class ImageGraphicsReader implements GraphicsReader {
     @Override
     public BufferedImage readGraphics(Graphics graphics) {
         return ImageReader.readImage(graphics)
-                .orElse(getOpacueImage());
+            .orElse(getOpacueImage());
     }
 
     private BufferedImage getOpacueImage() {

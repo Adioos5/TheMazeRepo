@@ -1,4 +1,4 @@
-package pl.com.lo.maze.entity;
+package pl.com.lo.maze.player;
 
 import java.awt.image.BufferedImage;
 
