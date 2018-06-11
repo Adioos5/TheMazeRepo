@@ -17,3 +17,4 @@ After installation you need to restart eclipse. After that, when you autoformat 
 
 Please assign issues to yourself while you starting working on it and move given issue to **In Pogress** column.
 Please also close issue  after resolving it. It can be done from details view for this issue (on bottom, below *Leave a comment*).
+

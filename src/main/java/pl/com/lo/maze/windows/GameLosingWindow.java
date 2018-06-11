@@ -15,7 +15,7 @@ public class GameLosingWindow extends JFrame implements ActionListener {
 	public GameLosingWindow() {
 		setBounds(200, 50, 1000, 600);
 		setTitle("The Maze");
-		setLayout(null);
+		setResizable(false);
 		bPlayAgain = new JButton("Play again");
 		bPlayAgain.setBounds(205, 400, 150, 50);
 		bPlayAgain.addActionListener(this);

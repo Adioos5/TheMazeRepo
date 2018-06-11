@@ -47,7 +47,7 @@ public class MenuWindow {
         initializeMenu();
 
     }
-
+    
     private void initializeMenu() {
         play.setSize(MENU_WIDTH, MENU_HEIGHT);
         play.setLocation(50, 150);

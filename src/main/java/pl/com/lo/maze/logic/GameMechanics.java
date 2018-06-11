@@ -23,12 +23,12 @@ public class GameMechanics implements KeyListener {
 	private boolean play;
 	private GameWinningWindow gww;
 	
-	public GameMechanics(Player player) throws IOException, URISyntaxException {
+	public GameMechanics(Player player, GameWinningWindow gww) {
 		// Class game mechanics sets its own player's beginning coordinates by getting
 		// the player's coordinates from object player
 		playerX = player.getPlayerX();
 		playerY = player.getPlayerY();
-		gww = new GameWinningWindow();
+		this.gww = gww;
 	}
 
 	// All getters with variables changed in this class needed for class Context

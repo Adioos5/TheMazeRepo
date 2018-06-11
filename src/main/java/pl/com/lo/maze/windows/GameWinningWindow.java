@@ -9,43 +9,43 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import pl.com.lo.maze.graphics.GameWinningWindowGraphics;
+import pl.com.lo.maze.importantClasses.Context;
 
 public class GameWinningWindow extends JFrame implements ActionListener {
 
     private JButton bPlayAgain, bExit;
-    private static JPanel gwwp;
-    private static BufferedImage gameWinningWindowBackground;
-    private static URL gameWinningWindowBackgroundResourceUrl;
+    private JPanel gwwp;
 
-    public GameWinningWindow() throws IOException, URISyntaxException {
-
-        gameWinningWindowBackgroundResourceUrl = ClassLoader.getSystemResource("images/Fireworks.jpeg");
-        File someFile = new File(gameWinningWindowBackgroundResourceUrl.toURI());
-        gameWinningWindowBackground = ImageIO.read(someFile);
-
-        gwwp = new GameWinningWindowGraphics(gameWinningWindowBackground);
+    
+    public GameWinningWindow(BufferedImage fireworksBackground){
+        
+        gwwp = new GameWinningWindowGraphics(fireworksBackground);    
+       
         setBounds(200, 50, 1000, 600);
         setTitle("The Maze");
-        setLayout(null);
+        setResizable(false);
+      
+        
         bPlayAgain = new JButton("Play again");
         bPlayAgain.setBounds(205, 400, 150, 50);
         bPlayAgain.addActionListener(this);
-        add(bPlayAgain);
 
         bExit = new JButton("Exit");
         bExit.setBounds(600, 400, 150, 50);
         bExit.addActionListener(this);
-        add(bExit);
 
+        add(bPlayAgain);
+        add(bExit);
+        add(gwwp);
     }
 
     public void runGameWinningWindow() {
-        add(gwwp);
         setVisible(true);
     }
 
