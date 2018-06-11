@@ -74,7 +74,7 @@ public class GameMechanics implements KeyListener {
             JOptionPane.showMessageDialog(null, "Good Job! You got out of the maze.", "Victory",
                     JOptionPane.INFORMATION_MESSAGE);
         }
-        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 368, 40 * tileSize, tileSize))) {
+        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 388, 40 * tileSize, tileSize))) {
             moveUp();
         }
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 0, 40 * tileSize, tileSize))) {
