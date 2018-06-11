@@ -1,5 +1,5 @@
 package pl.com.lo.maze;
-
+//GITARA SIEMAAAAAAA!!!!!!
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
