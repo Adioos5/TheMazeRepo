@@ -112,9 +112,9 @@ public class TileMapPanel extends JPanel implements ActionListener {
         if (play != true) {
 
             g2.setColor(Color.yellow);
-            g2.fillRect(32, 180, 6, 120);
-            g2.setFont(new Font("serif", Font.TYPE1_FONT, 15));
-            g2.drawString("Press any button", 20, 170);
+            g2.fillRect(40, 580, 6, 120);
+            g2.setFont(new Font("serif", Font.TYPE1_FONT, 20));
+            g2.drawString("Press any button", 20, 570);
 
         }
 
