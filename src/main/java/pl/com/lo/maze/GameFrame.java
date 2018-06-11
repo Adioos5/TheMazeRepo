@@ -38,6 +38,7 @@ public class GameFrame {
 
         frame.setIconImage(gameIcon.getImage());
         frame.setBounds(x, y, width, height);
+        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle(title);

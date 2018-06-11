@@ -16,7 +16,7 @@ public class EntryPoint {
     private static Player player;
     private static GameMechanics gameMechanics;
     private static Tile tile;
-    // XD
+    
     private static URL spikesUrl;
     private static URL coinGifUrl;
     private static URL gameIconResourceUrl;
