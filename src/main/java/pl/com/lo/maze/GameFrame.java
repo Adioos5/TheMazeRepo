@@ -14,7 +14,7 @@ public class GameFrame {
     private Context context;
     private GameMechanics gameMechanics;
     private static JFrame frame = new JFrame();
-
+    //XD
     public GameFrame(int[][] tileMap, Context context, GameMechanics gameMechanics) {
         this.tileMap = tileMap;
         this.context = context;
