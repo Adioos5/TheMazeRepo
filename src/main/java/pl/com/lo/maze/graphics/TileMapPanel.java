@@ -1,4 +1,4 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.graphics;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,6 +16,10 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import pl.com.lo.maze.importantClasses.Context;
+import pl.com.lo.maze.logic.GameMechanics;
+import pl.com.lo.maze.logic.TimeCounter;
 
 public class TileMapPanel extends JPanel implements ActionListener {
 

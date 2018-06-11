@@ -1,4 +1,4 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.logic;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

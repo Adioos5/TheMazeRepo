@@ -1,11 +1,17 @@
 
-package pl.com.lo.maze;
+package pl.com.lo.maze.logic;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.swing.JOptionPane;
+
+import pl.com.lo.maze.importantClasses.Player;
+import pl.com.lo.maze.windows.GameFrame;
+import pl.com.lo.maze.windows.GameWinningWindow;
 
 public class GameMechanics implements KeyListener {
 
@@ -15,12 +21,14 @@ public class GameMechanics implements KeyListener {
 	private int tileSize = 32;
 	private static final int playerSpeed = 32;
 	private boolean play;
-
-	public GameMechanics(Player player) {
+	private GameWinningWindow gww;
+	
+	public GameMechanics(Player player) throws IOException, URISyntaxException {
 		// Class game mechanics sets its own player's beginning coordinates by getting
 		// the player's coordinates from object player
 		playerX = player.getPlayerX();
 		playerY = player.getPlayerY();
+		gww = new GameWinningWindow();
 	}
 
 	// All getters with variables changed in this class needed for class Context
@@ -73,8 +81,7 @@ public class GameMechanics implements KeyListener {
 			gf.disposeGameWindow();
 			JOptionPane.showMessageDialog(null, "Good Job! You got out of the maze.", "Victory",
 					JOptionPane.INFORMATION_MESSAGE);
-			GameWinningWindow gww = new GameWinningWindow();
-			gww.GameWinningWindow();
+			gww.runGameWinningWindow();
 		}
 		if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 388, 40 * tileSize, tileSize))) {
 			moveUp();

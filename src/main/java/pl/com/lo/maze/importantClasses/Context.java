@@ -1,9 +1,11 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.importantClasses;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+
+import pl.com.lo.maze.logic.GameMechanics;
 
 public class Context {
 
@@ -19,7 +21,7 @@ public class Context {
 
     private URL gameIconResourceUrl;
     private BufferedImage menuBackground;
-
+    
     private Tile grass;
     private Tile spikes;
     private Tile bush;
@@ -32,7 +34,7 @@ public class Context {
         this.gameMechanics = gameMechanics;
         this.player = player;
         this.gameIconResourceUrl = resource1;
-
+       
         this.spikes = spikes;
         this.grass = grass;
         this.bush = bush;
@@ -84,6 +86,7 @@ public class Context {
         return menuBackground;
     }
 
+   
     public BufferedImage getCoinImg() {
         return coin.getTileImage();
     }

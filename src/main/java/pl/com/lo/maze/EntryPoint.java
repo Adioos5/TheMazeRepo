@@ -1,5 +1,5 @@
 package pl.com.lo.maze;
-//GITARA SIEMAAAAAAA!!!!!!
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +8,14 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import pl.com.lo.maze.importantClasses.Context;
+import pl.com.lo.maze.importantClasses.Player;
+import pl.com.lo.maze.importantClasses.Tile;
+import pl.com.lo.maze.logic.GameMechanics;
+import pl.com.lo.maze.logic.TileMapReader;
+import pl.com.lo.maze.windows.GameWinningWindow;
+import pl.com.lo.maze.windows.MenuWindow;
+
 public class EntryPoint {
 
     // all important files and variables declaration
@@ -15,7 +23,6 @@ public class EntryPoint {
     private static Context context;
     private static Player player;
     private static GameMechanics gameMechanics;
-    private static Tile tile;
     
     private static URL spikesUrl;
     private static URL coinGifUrl;
@@ -24,13 +31,15 @@ public class EntryPoint {
     private static URL bushResourceUrl;
     private static URL playerResourceUrl;
     private static URL menuBackgroundResourceUrl;
-
+    private static URL gameWinningWindowBackgroundResourceUrl;
+    
     private static BufferedImage spikesImg;
     private static BufferedImage coinImg;
     private static BufferedImage grassImg;
     private static BufferedImage bushImg;
     private static BufferedImage playerImg;
     private static BufferedImage menuBackground;
+    private static BufferedImage gameWinningWindowBackground;
     
     private static Tile spikes;
     private static Tile coin;
@@ -57,7 +66,8 @@ public class EntryPoint {
         bushResourceUrl = ClassLoader.getSystemResource("images/Bush_6.png");
         grassResourceUrl = ClassLoader.getSystemResource("images/Grass_0.png");
         menuBackgroundResourceUrl = ClassLoader.getSystemResource("images/mazeBackground.jpg");
-
+        gameWinningWindowBackgroundResourceUrl = ClassLoader.getSystemResource("images/Fireworks.jpeg");
+       
         // Creating files from images url
         File spike = new File(spikesUrl.toURI());
         File coin1 = new File(coinGifUrl.toURI());
@@ -65,7 +75,8 @@ public class EntryPoint {
         File bush_6 = new File(bushResourceUrl.toURI());
         File hero = new File(playerResourceUrl.toURI());
         File menuBackgroundFile = new File(menuBackgroundResourceUrl.toURI());
-
+        File  gameWinningWindowBackgroundFile = new File(gameWinningWindowBackgroundResourceUrl.toURI());
+        
         // reading files and converting them into images, which we will use in the
         // TileMapPanel
         spikesImg = ImageIO.read(spike);
@@ -74,11 +85,12 @@ public class EntryPoint {
         bushImg = ImageIO.read(bush_6);
         playerImg = ImageIO.read(hero);
         menuBackground = ImageIO.read(menuBackgroundFile);
-
+        gameWinningWindowBackground = ImageIO.read(gameWinningWindowBackgroundFile);
+        
         createClassObjects();
     }
 
-    public static void createClassObjects() {
+    public static void createClassObjects() throws IOException, URISyntaxException {
 
         // here all important class objects are created.
         // Class Tile keeps information about every single tile, like their images or
@@ -92,6 +104,7 @@ public class EntryPoint {
         // coordinates(they will be changed later in class GameMechanics)
         player = new Player(playerImg, 48, 716);
 
+       
         // Class GameMechanics uses class player to change player's coordinates. This
         // class is also a KeyListener for TileMapPanel. This means, that when we will
         // type anything on the keyboard while the window with this panel is opened,

@@ -1,4 +1,4 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.windows;
 
 
 import java.awt.event.ActionEvent;
@@ -7,28 +7,28 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class GameWinningWindow extends JFrame implements ActionListener {
+public class GameLosingWindow extends JFrame implements ActionListener {
 	
 
 	private JButton bPlayAgain, bExit;
 
-	public GameWinningWindow() {
+	public GameLosingWindow() {
 		setBounds(200, 50, 1000, 600);
-		setTitle("TheMaze");
+		setTitle("The Maze");
 		setLayout(null);
 		bPlayAgain = new JButton("Play again");
 		bPlayAgain.setBounds(205, 400, 150, 50);
 		bPlayAgain.addActionListener(this);
 		add(bPlayAgain);
 
-		bExit = new JButton("Back");
+		bExit = new JButton("Exit");
 		bExit.setBounds(600, 400, 150, 50);
 		bExit.addActionListener(this);
 		add(bExit);
 
 	}
 
-	 public void GameWinningWindow() {
+	 public void runGameLosingWindow() {
 	        setVisible(true);
 	 }
 
@@ -37,7 +37,7 @@ public class GameWinningWindow extends JFrame implements ActionListener {
 		Object source = e.getSource();
 
 		if (source == bExit) {
-			dispose();
+			System.exit(0);
 
 		}
 	}

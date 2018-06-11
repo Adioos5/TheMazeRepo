@@ -1,4 +1,4 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.windows;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

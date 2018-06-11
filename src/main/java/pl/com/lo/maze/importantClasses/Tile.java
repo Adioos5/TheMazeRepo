@@ -1,4 +1,4 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.importantClasses;
 
 import java.awt.image.BufferedImage;
 

@@ -1,10 +1,14 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.windows;
 
 import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import pl.com.lo.maze.graphics.TileMapPanel;
+import pl.com.lo.maze.importantClasses.Context;
+import pl.com.lo.maze.logic.GameMechanics;
 
 public class GameFrame {
 

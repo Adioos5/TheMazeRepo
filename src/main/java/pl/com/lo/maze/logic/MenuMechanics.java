@@ -1,9 +1,14 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.logic;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+
+import pl.com.lo.maze.importantClasses.Context;
+import pl.com.lo.maze.windows.GameFrame;
+import pl.com.lo.maze.windows.HelpWindow;
+import pl.com.lo.maze.windows.MenuWindow;
 
 public class MenuMechanics implements ActionListener {
 
@@ -37,7 +42,7 @@ public class MenuMechanics implements ActionListener {
         }
 
         if (e.getSource() == exit) {                               
-            mw.closeMenu();
+            System.exit(0);
         }
 
         if (e.getSource() == settings) {

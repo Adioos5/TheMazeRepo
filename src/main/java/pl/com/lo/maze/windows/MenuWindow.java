@@ -1,4 +1,4 @@
-package pl.com.lo.maze;
+package pl.com.lo.maze.windows;
 
 import java.awt.Color;
 
@@ -7,6 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import pl.com.lo.maze.graphics.MenuGraphics;
+import pl.com.lo.maze.importantClasses.Context;
+import pl.com.lo.maze.logic.GameMechanics;
+import pl.com.lo.maze.logic.MenuMechanics;
 
 public class MenuWindow {
 
