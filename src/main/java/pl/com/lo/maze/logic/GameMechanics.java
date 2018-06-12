@@ -78,9 +78,7 @@ public class GameMechanics implements KeyListener {
 		// Game ending window shows when the player(made into rectangle) intersects some
 		// rectangle placed at the end of the maze
 		if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(2 * 630, 32, 32, 32))) {
-			gf.disposeGameWindow();
-			JOptionPane.showMessageDialog(null, "Good Job! You got out of the maze.", "Victory",
-					JOptionPane.INFORMATION_MESSAGE);
+			gf.disposeGameWindow();			
 			gww.runGameWinningWindow();
 		}
 		if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 388, 40 * tileSize, tileSize))) {
