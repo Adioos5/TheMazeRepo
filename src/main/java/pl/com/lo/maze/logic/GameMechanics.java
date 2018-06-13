@@ -183,7 +183,7 @@ public class GameMechanics implements KeyListener {
         if (coin1 = true) {
             score += scoreForCoin;
           
-            // Timer += 10000;
+            timeCounter.inscreaseSeconds(10);
             coin1 = false;
         }
     }
@@ -194,7 +194,7 @@ public class GameMechanics implements KeyListener {
        
         if (coin2 = true) {
             score += scoreForCoin;
-          
+            timeCounter.inscreaseSeconds(10);
             // Timer += 10000;
             coin2 = false;
         }
@@ -205,7 +205,7 @@ public class GameMechanics implements KeyListener {
        
         if (coin3 = true) {
             score += scoreForCoin;
-          
+            timeCounter.inscreaseSeconds(10);
             // Timer += 10000;
             coin3 = false;
         }
@@ -215,7 +215,7 @@ public class GameMechanics implements KeyListener {
         
         if (coin4 = true) {
             score += scoreForCoin;
-           
+            timeCounter.inscreaseSeconds(10);
             // Timer += 10000;
             coin4 = false;
         }
@@ -225,7 +225,7 @@ public class GameMechanics implements KeyListener {
        
         if (coin5 = true) {
             score += scoreForCoin;
-            
+            timeCounter.inscreaseSeconds(10);
             // Timer += 10000;
             coin5 = false;
         }
@@ -235,7 +235,7 @@ public class GameMechanics implements KeyListener {
       
         if (coin6 = true) {
             score += scoreForCoin;
-            
+            timeCounter.inscreaseSeconds(10);
             // Timer += 10000;
             coin6 = false;
         }
@@ -276,6 +276,13 @@ public class GameMechanics implements KeyListener {
     
     public void setAllValuesToTheBeginning() {
         timeCounter.stop();
+        coin1 = true;
+        coin2 = true;
+        coin3 = true;
+        coin4 = true;
+        coin5 = true;
+        coin6 = true;
+        
         timeCounter.setSeconds(0);
         playerX = 48;
         playerY = 716;
