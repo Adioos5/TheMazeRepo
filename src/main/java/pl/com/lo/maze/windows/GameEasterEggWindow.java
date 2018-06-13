@@ -28,16 +28,17 @@ public class GameEasterEggWindow implements ActionListener {
         frame.setBounds(200, 50, 768, 1024);
         frame.setTitle("EasterEgg");
         frame.setResizable(false);
-    
+        gegwg = new GameEasterEggWindowGraphics(img);
         
 
     }
 
-    public void runGameEasterEggWindow(String message) {
+    public void runGameEasterEggWindow() {
       
         ImageIcon icn;
         icn = new ImageIcon(url);
         frame.setIconImage(icn.getImage());
+        frame.add(gegwg);
         frame.setVisible(true);
     }
     public void closeWindow() {

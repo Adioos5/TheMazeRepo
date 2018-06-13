@@ -121,13 +121,13 @@ public class EntryPoint {
 
         win = new GameWinningWindow(fireworksBackground, gameIconResourceUrl);
         lose = new GameLosingWindow(rainBackground, gameIconResourceUrl);
-        basiak = new GameEasterEggWindow(basiakEasterEgg, basiakEasterEggUrl);
+        basiak = new GameEasterEggWindow(basiakEasterEgg, gameIconResourceUrl);
         // Class GameMechanics uses class player to change player's coordinates. This
         // class is also a KeyListener for TileMapPanel. This means, that when we will
         // type anything on the keyboard while the window with this panel is opened,
         // class GameMechanics will read any of these types and do something when we for
         // example press or release some key.
-        gameMechanics = new GameMechanics(player, win, lose);
+        gameMechanics = new GameMechanics(player, win, lose, basiak);
 
         // Class Context keeps(should keep) all the important information for other
         // classes. It

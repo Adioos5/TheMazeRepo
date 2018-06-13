@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import pl.com.lo.maze.graphics.TileMapPanel;
+import pl.com.lo.maze.graphics.GameEasterEggWindowGraphics;
 import pl.com.lo.maze.importantClasses.Player;
 import pl.com.lo.maze.windows.GameEasterEggWindow;
 import pl.com.lo.maze.windows.GameFrame;
@@ -35,16 +35,16 @@ public class GameMechanics implements KeyListener {
     private GameLosingWindow glw;
     private List<Rectangle> listOfRectangles = new ArrayList<>();
     private List<Rectangle> listOfCoins = new ArrayList<>();
+    private GameEasterEggWindow geew;
     
-
-    public GameMechanics(Player player, GameWinningWindow gww, GameLosingWindow glw) {
+    public GameMechanics(Player player, GameWinningWindow gww, GameLosingWindow glw, GameEasterEggWindow basiak) {
         // Class game mechanics sets its own player's beginning coordinates by getting
         // the player's coordinates from object player
         playerX = player.getPlayerX();
         playerY = player.getPlayerY();
         this.gww = gww;
         this.glw = glw;
-        
+        geew = basiak;
     }
 
     // All getters with variables changed in this class needed for class Context
@@ -76,6 +76,14 @@ public class GameMechanics implements KeyListener {
         }
         play = true;
 
+        if (new Rectangle(playerX, playerY, 32, 32)
+                               .intersects(new Rectangle(-32, 716, tileSize,  tileSize))) {
+                           System.out.println("Basiak");
+                           gf = new GameFrame(null, null, null);
+                           gf.disposeGameWindow();
+                           setAllValuesToTheBeginning();
+                           geew.runGameEasterEggWindow();
+                   }
         for (Rectangle r : listOfRectangles) {
             if (new Rectangle(playerX, playerY, 16, 16).intersects(r)) {
                 playerX = 48;
