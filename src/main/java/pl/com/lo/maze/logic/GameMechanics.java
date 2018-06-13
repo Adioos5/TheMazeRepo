@@ -58,10 +58,11 @@ public class GameMechanics implements KeyListener {
 			timeCounter.start();
 		}
 		play = true;
+		
 
 		// Methods called depending on which key we will press
 		if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-			moveRight();
+			 moveRight();
 		}
 
 		if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -94,6 +95,9 @@ public class GameMechanics implements KeyListener {
 		if (new Rectangle(playerX, playerY, 32, 32)
 				.intersects(new Rectangle(2 * 624, 64, 2 * tileSize, 23 * tileSize))) {
 			moveLeft();
+		}
+		if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 32, 2 * tileSize, 21 * tileSize))) {
+			
 		}
 
 	}
