@@ -3,8 +3,12 @@ package pl.com.lo.maze.windows;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,12 +21,19 @@ public class GameLosingWindow implements ActionListener {
 
     private JButton bPlayAgain, bExit;
     private BufferedImage img;
+    private BufferedImage spikesTrap;
     private JPanel glwg;
     private static JFrame frame = new JFrame();
     private URL url;
-    
-    public GameLosingWindow(BufferedImage img, URL url) {
-
+    private URL urlSpikesTrap;
+    public GameLosingWindow(BufferedImage img, URL url) throws IOException {
+        urlSpikesTrap = ClassLoader.getSystemResource("images/SpikesTrap.png");
+        try {
+            File spikesTrapFile = new File(urlSpikesTrap.toURI());
+            spikesTrap = ImageIO.read(spikesTrapFile);
+        } catch (URISyntaxException e) {
+            System.err.println(e);
+        }
         this.img = img;
         this.url = url;
         frame.setBounds(200, 50, 1000, 600);
@@ -40,13 +51,19 @@ public class GameLosingWindow implements ActionListener {
 
     }
 
-    public void runGameLosingWindow(String message) {
+    public void runGameLosingWindow(int message) {
       
         ImageIcon icn;
         icn = new ImageIcon(url);
         frame.setIconImage(icn.getImage());
-        glwg = new GameLosingWindowGraphics(img,message);
-        frame.add(glwg);
+        if(message==2) {
+            glwg = new GameLosingWindowGraphics(img,"Time's up!");
+            frame.add(glwg); 
+        } else if (message==1){
+            glwg = new GameLosingWindowGraphics(spikesTrap,"You died");
+            frame.add(glwg);   
+            
+        }
         frame.setVisible(true);
     }
     public void closeWindow() {

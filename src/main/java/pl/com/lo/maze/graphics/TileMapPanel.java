@@ -35,13 +35,8 @@ public class TileMapPanel extends JPanel implements ActionListener {
     private Context context;
     private GameMechanics gm;
     private List<Rectangle> listOfRectangles = new ArrayList<>();
-    private boolean coin1Dispose = false;
-    private boolean coin2Dispose = false;
-    private boolean coin3Dispose = false;
-    private boolean coin4Dispose = false;
-    private boolean coin5Dispose = false;
-    private boolean coin6Dispose = false;
-
+    
+  
     public TileMapPanel(int[][] tileMap, Context context, GameMechanics gameMechanics) {
         // Here we initialize the time counter object which will be needed for
         // TileMapPanel to change the time left to end the game
@@ -110,11 +105,13 @@ public class TileMapPanel extends JPanel implements ActionListener {
 
                 if (tileMap[i][j] == context.getCoinType()) {
                     bi = context.getCoinImg();
-                    Rectangle rect = new Rectangle(i * tileSize, j * tileSize, tileSize, tileSize);
+                   
 
                 }
                 if (tileMap[i][j] == context.getSpikesType()) {
                     bi = context.getSpikesImg();
+                    Rectangle rect = new Rectangle(i * tileSize, j * tileSize, tileSize, tileSize);
+                    gm.addSpikeToTheList(rect);
                 }
                 g2.drawImage(bi, i * tileSize, j * tileSize, tileSize, tileSize, null);
             }
@@ -197,30 +194,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
         return tileMap[0].length;
     }
 
-    public void disposeCoin1() {
-        coin1Dispose = true;
-    }
-
-    public void disposeCoin2() {
-        coin1Dispose = true;
-    }
-
-    public void disposeCoin3() {
-        coin1Dispose = true;
-    }
-
-    public void disposeCoin4() {
-        coin1Dispose = true;
-    }
-
-    public void disposeCoin5() {
-        coin1Dispose = true;
-    }
-
-    public void disposeCoin6() {
-        coin1Dispose = true;
-    }
-
+ 
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -228,9 +202,9 @@ public class TileMapPanel extends JPanel implements ActionListener {
         // sleeping
         seconds = timeCounter.getSeconds();
         timer.start();
-
+        
         if (seconds == 60) {
-            gm.openGameLosingWindow("Time's up!");
+            gm.openGameLosingWindow(2);
         }
         // Here the TileMapPanel is being repainted automatically
         repaint();

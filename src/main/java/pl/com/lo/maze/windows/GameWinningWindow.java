@@ -19,9 +19,9 @@ public class GameWinningWindow implements ActionListener {
     private JPanel gwwp;
     private static JFrame frame = new JFrame();
     private URL url;
-    
+    private BufferedImage fireworks;
     public GameWinningWindow(BufferedImage fireworksBackground, URL url) {
-        gwwp = new GameWinningWindowGraphics(fireworksBackground);
+        fireworks = fireworksBackground;
         this.url = url;
         frame.setBounds(200, 50, 1000, 600);
         frame.setTitle("The Maze");
@@ -36,13 +36,14 @@ public class GameWinningWindow implements ActionListener {
         bExit.addActionListener(new GameWinningWindowMechanics(bPlayAgain, bExit));
         frame.add(bPlayAgain);
         frame.add(bExit);
-        frame.add(gwwp);
     }
 
-    public void runGameWinningWindow() {
+    public void runGameWinningWindow(int score) {
         ImageIcon icn;
         icn = new ImageIcon(url);
         frame.setIconImage(icn.getImage());
+        gwwp = new GameWinningWindowGraphics(fireworks,score);
+        frame.add(gwwp);
         frame.setVisible(true);
     }
 

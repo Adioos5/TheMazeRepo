@@ -16,14 +16,14 @@ import pl.com.lo.maze.windows.GameWinningWindow;
 
 public class GameMechanics implements KeyListener {
 
-    private int [][]tp;
+    private int[][] tp;
     private boolean coin1 = true;
     private boolean coin2 = true;
     private boolean coin3 = true;
     private boolean coin4 = true;
     private boolean coin5 = true;
     private boolean coin6 = true;
-    private int score;
+    private int score = 0;
     private TimeCounter timeCounter;
     private int playerX;
     private int playerY;
@@ -34,9 +34,9 @@ public class GameMechanics implements KeyListener {
     private GameWinningWindow gww;
     private GameLosingWindow glw;
     private List<Rectangle> listOfRectangles = new ArrayList<>();
-    private List<Rectangle> listOfCoins = new ArrayList<>();
+    private List<Rectangle> listOfSpikes = new ArrayList<>();
     private GameEasterEggWindow geew;
-    
+
     public GameMechanics(Player player, GameWinningWindow gww, GameLosingWindow glw, GameEasterEggWindow basiak) {
         // Class game mechanics sets its own player's beginning coordinates by getting
         // the player's coordinates from object player
@@ -62,7 +62,7 @@ public class GameMechanics implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        
+
         GameFrame gf = new GameFrame(null, null, null);
 
         // Here the thread timeCounter starts, when player presses any button at the
@@ -76,18 +76,22 @@ public class GameMechanics implements KeyListener {
         }
         play = true;
 
-        if (new Rectangle(playerX, playerY, 32, 32)
-                               .intersects(new Rectangle(-32, 716, tileSize,  tileSize))) {
-                           System.out.println("Basiak");
-                           gf = new GameFrame(null, null, null);
-                           gf.disposeGameWindow();
-                           setAllValuesToTheBeginning();
-                           geew.runGameEasterEggWindow();
-                   }
+        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 716, tileSize, tileSize))) {
+
+            gf = new GameFrame(null, null, null);
+            gf.disposeGameWindow();
+            setAllValuesToTheBeginning();
+            geew.runGameEasterEggWindow();
+        }
         for (Rectangle r : listOfRectangles) {
             if (new Rectangle(playerX, playerY, 16, 16).intersects(r)) {
                 playerX = 48;
                 playerY = 716;
+            }
+        }
+        for (Rectangle r : listOfSpikes) {
+            if (new Rectangle(playerX, playerY, 16, 16).intersects(r)) {
+                stepOnSpikes();
             }
         }
 
@@ -111,8 +115,9 @@ public class GameMechanics implements KeyListener {
         // rectangle placed at the end of the maze
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(2 * 630, 32, 32, 32))) {
             gf.disposeGameWindow();
+            score += timeCounter.getSeconds();
             setAllValuesToTheBeginning();
-            gww.runGameWinningWindow();
+            gww.runGameWinningWindow(score);
         }
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 388, 40 * tileSize, tileSize))) {
             moveUp();
@@ -123,9 +128,8 @@ public class GameMechanics implements KeyListener {
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 32, 2 * tileSize, 21 * tileSize))) {
             moveRight();
         }
-     
 
-      if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(32, 32, tileSize, tileSize))) {
+        if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(32, 32, tileSize, tileSize))) {
             stepOnCoin1();
         }
         if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(656, 32, tileSize, tileSize))) {
@@ -179,20 +183,18 @@ public class GameMechanics implements KeyListener {
     }
 
     public void stepOnCoin1() {
-    
-        if (coin1 = true) {
+
+        if (coin1 == true) {
             score += scoreForCoin;
-          
+
             timeCounter.inscreaseSeconds(10);
             coin1 = false;
         }
     }
 
     public void stepOnCoin2() {
-     
-       
-       
-        if (coin2 = true) {
+
+        if (coin2 == true) {
             score += scoreForCoin;
             timeCounter.inscreaseSeconds(10);
             // Timer += 10000;
@@ -201,9 +203,8 @@ public class GameMechanics implements KeyListener {
     }
 
     public void stepOnCoin3() {
-       
-       
-        if (coin3 = true) {
+
+        if (coin3 == true) {
             score += scoreForCoin;
             timeCounter.inscreaseSeconds(10);
             // Timer += 10000;
@@ -212,8 +213,8 @@ public class GameMechanics implements KeyListener {
     }
 
     public void stepOnCoin4() {
-        
-        if (coin4 = true) {
+
+        if (coin4 == true) {
             score += scoreForCoin;
             timeCounter.inscreaseSeconds(10);
             // Timer += 10000;
@@ -222,8 +223,8 @@ public class GameMechanics implements KeyListener {
     }
 
     public void stepOnCoin5() {
-       
-        if (coin5 = true) {
+
+        if (coin5 == true) {
             score += scoreForCoin;
             timeCounter.inscreaseSeconds(10);
             // Timer += 10000;
@@ -232,8 +233,8 @@ public class GameMechanics implements KeyListener {
     }
 
     public void stepOnCoin6() {
-      
-        if (coin6 = true) {
+
+        if (coin6 == true) {
             score += scoreForCoin;
             timeCounter.inscreaseSeconds(10);
             // Timer += 10000;
@@ -242,12 +243,13 @@ public class GameMechanics implements KeyListener {
     }
 
     public void stepOnSpikes() {
-
+        openGameLosingWindow(1);
     }
 
-    public void openGameLosingWindow(String message) {
+    public void openGameLosingWindow(int message) {
         GameFrame gf = new GameFrame(null, null, null);
         gf.disposeGameWindow();
+        
         setAllValuesToTheBeginning();
         glw.runGameLosingWindow(message);
     }
@@ -255,25 +257,35 @@ public class GameMechanics implements KeyListener {
     public void addRectangleToTheList(Rectangle rect) {
         listOfRectangles.add(rect);
     }
+
+    public void addSpikeToTheList(Rectangle rect) {
+        listOfSpikes.add(rect);
+    }
+
     public boolean coin1IsDisposed() {
         return coin1;
     }
+
     public boolean coin2IsDisposed() {
         return coin2;
     }
+
     public boolean coin3IsDisposed() {
         return coin3;
     }
+
     public boolean coin4IsDisposed() {
         return coin4;
     }
+
     public boolean coin5IsDisposed() {
         return coin5;
     }
+
     public boolean coin6IsDisposed() {
         return coin6;
     }
-    
+
     public void setAllValuesToTheBeginning() {
         timeCounter.stop();
         coin1 = true;
@@ -282,13 +294,12 @@ public class GameMechanics implements KeyListener {
         coin4 = true;
         coin5 = true;
         coin6 = true;
-        
+
         timeCounter.setSeconds(0);
         playerX = 48;
         playerY = 716;
         play = false;
 
     }
-
 
 }

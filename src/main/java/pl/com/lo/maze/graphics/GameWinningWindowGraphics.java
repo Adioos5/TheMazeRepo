@@ -10,12 +10,13 @@ import javax.swing.JPanel;
 
 public class GameWinningWindowGraphics extends JPanel{
   
-    private int score = 0;
+    private int score;
   
     private BufferedImage gameWinningWindowBackground;
     
-    public GameWinningWindowGraphics(BufferedImage img) {
+    public GameWinningWindowGraphics(BufferedImage img, int score) {
         gameWinningWindowBackground = img;
+        this.score = score;
     }
 
     public void paint(Graphics g) {
