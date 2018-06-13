@@ -9,11 +9,13 @@ import java.util.List;
 
 import pl.com.lo.maze.graphics.TileMapPanel;
 import pl.com.lo.maze.importantClasses.Player;
+import pl.com.lo.maze.windows.GameEasterEggWindow;
 import pl.com.lo.maze.windows.GameFrame;
 import pl.com.lo.maze.windows.GameLosingWindow;
 import pl.com.lo.maze.windows.GameWinningWindow;
 
 public class GameMechanics implements KeyListener {
+
     private int [][]tp;
     private boolean coin1 = true;
     private boolean coin2 = true;
@@ -272,4 +274,6 @@ public class GameMechanics implements KeyListener {
         play = false;
 
     }
+
+
 }
