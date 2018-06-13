@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import pl.com.lo.maze.graphics.GameWinningWindowGraphics;
 import pl.com.lo.maze.importantClasses.Context;
+import pl.com.lo.maze.logic.GameWinningWindowMechanics;
 
 public class GameWinningWindow extends JFrame implements ActionListener {
 
@@ -26,7 +27,7 @@ public class GameWinningWindow extends JFrame implements ActionListener {
     public GameWinningWindow(BufferedImage fireworksBackground){
         
         gwwp = new GameWinningWindowGraphics(fireworksBackground);    
-       
+        
         setBounds(200, 50, 1000, 600);
         setTitle("The Maze");
         setResizable(false);
@@ -34,11 +35,11 @@ public class GameWinningWindow extends JFrame implements ActionListener {
         
         bPlayAgain = new JButton("Play again");
         bPlayAgain.setBounds(205, 400, 150, 50);
-        bPlayAgain.addActionListener(this);
+        bPlayAgain.addActionListener(new GameWinningWindowMechanics(bPlayAgain,bExit));
 
         bExit = new JButton("Exit");
         bExit.setBounds(600, 400, 150, 50);
-        bExit.addActionListener(this);
+        bExit.addActionListener(new GameWinningWindowMechanics(bPlayAgain,bExit));
 
         add(bPlayAgain);
         add(bExit);
