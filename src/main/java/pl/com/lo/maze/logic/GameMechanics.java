@@ -79,7 +79,8 @@ public class GameMechanics implements KeyListener {
 		// Game ending window shows when the player(made into rectangle) intersects some
 		// rectangle placed at the end of the maze
 		if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(2 * 630, 32, 32, 32))) {
-			gf.disposeGameWindow();			
+			gf.disposeGameWindow();		
+			setAllValuesToTheBeginning();
 			gww.runGameWinningWindow();
 		}
 		if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 2 * 388, 40 * tileSize, tileSize))) {
@@ -130,4 +131,12 @@ public class GameMechanics implements KeyListener {
 		playerY += playerSpeed;
 	}
 
+	public void setAllValuesToTheBeginning() {
+	    timeCounter.stop();
+	    timeCounter.setSeconds(0);
+	    playerX = 48;
+	    playerY = 716;
+	    play = false;
+	    
+	}
 }

@@ -24,4 +24,7 @@ public class TimeCounter extends Thread {
     public int getSeconds() {
         return seconds;
     }
+    public void setSeconds(int number) {
+        seconds = number;
+    }
 }
