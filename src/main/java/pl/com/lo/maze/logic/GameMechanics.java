@@ -4,6 +4,8 @@ package pl.com.lo.maze.logic;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import pl.com.lo.maze.importantClasses.Player;
 import pl.com.lo.maze.windows.GameFrame;
@@ -20,6 +22,7 @@ public class GameMechanics implements KeyListener {
 	private boolean play;
 	private GameWinningWindow gww;
 	private GameLosingWindow glw;
+	private List<Rectangle> listOfRectangles = new ArrayList<>();
 	
 	public GameMechanics(Player player, GameWinningWindow gww, GameLosingWindow glw) {
 		// Class game mechanics sets its own player's beginning coordinates by getting
@@ -47,6 +50,7 @@ public class GameMechanics implements KeyListener {
 	public void keyPressed(KeyEvent ke) {
 		GameFrame gf = new GameFrame(null, null, null);
 
+		
 		// Here the thread timeCounter starts, when player presses any button at the
 		// beginning of
 		// the game. It can't start for the second time, because then more than one
@@ -58,6 +62,13 @@ public class GameMechanics implements KeyListener {
 		}
 		play = true;
 
+		for(Rectangle r:listOfRectangles) {
+		    if(new Rectangle(playerX, playerY, 10, 10).intersects(r)) {
+		        playerX = 48;
+		        playerY = 716;
+		    }
+		}
+		
 		// Methods called depending on which key we will press
 		if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
 			moveRight();
@@ -132,6 +143,10 @@ public class GameMechanics implements KeyListener {
 	    glw.runGameLosingWindow(message);
 	}
 
+	public void addRectangleToTheList(Rectangle rect) {
+	    listOfRectangles.add(rect);
+	}
+	
 	public void setAllValuesToTheBeginning() {
 	    timeCounter.stop();
 	    timeCounter.setSeconds(0);

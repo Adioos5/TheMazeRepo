@@ -3,17 +3,11 @@ package pl.com.lo.maze.graphics;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -95,13 +89,15 @@ public class TileMapPanel extends JPanel implements ActionListener {
                 if (tileMap[i][j] == context.getGrassType()) {
                     // Here is the grass image gotten from object context
                     bi = context.getGrassImage();
-
                 }
+                
                 if (tileMap[i][j] == context.getBushType()) {
                     // Here is the bush image gotten from object context
                     bi = context.getBushImage();
-
+                    Rectangle rect = new Rectangle(i*tileSize,j*tileSize,tileSize,tileSize);
+                    gm.addRectangleToTheList(rect);
                 }
+                
                 if (tileMap[i][j] == context.getCoinType()){
                     bi = context.getCoinImg();
                 }
