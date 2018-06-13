@@ -35,6 +35,12 @@ public class TileMapPanel extends JPanel implements ActionListener {
     private Context context;
     private GameMechanics gm;
     private List<Rectangle> listOfRectangles = new ArrayList<>();
+    private boolean coin1Dispose = false;
+    private boolean coin2Dispose = false;
+    private boolean coin3Dispose = false;
+    private boolean coin4Dispose = false;
+    private boolean coin5Dispose = false;
+    private boolean coin6Dispose = false;
 
     public TileMapPanel(int[][] tileMap, Context context, GameMechanics gameMechanics) {
         // Here we initialize the time counter object which will be needed for
@@ -93,27 +99,54 @@ public class TileMapPanel extends JPanel implements ActionListener {
                     // Here is the grass image gotten from object context
                     bi = context.getGrassImage();
                 }
-                
+
                 if (tileMap[i][j] == context.getBushType()) {
                     // Here is the bush image gotten from object context
                     bi = context.getBushImage();
-                    Rectangle rect = new Rectangle(i*tileSize,j*tileSize,tileSize,tileSize);
+                    Rectangle rect = new Rectangle(i * tileSize, j * tileSize, tileSize, tileSize);
                     listOfRectangles.add(rect);
                     gm.addRectangleToTheList(rect);
                 }
-                
-                if (tileMap[i][j] == context.getCoinType()){
+
+                if (tileMap[i][j] == context.getCoinType()) {
                     bi = context.getCoinImg();
+                    Rectangle rect = new Rectangle(i * tileSize, j * tileSize, tileSize, tileSize);
+
                 }
-                if (tileMap[i][j] == context.getSpikesType()){
+                if (tileMap[i][j] == context.getSpikesType()) {
                     bi = context.getSpikesImg();
                 }
                 g2.drawImage(bi, i * tileSize, j * tileSize, tileSize, tileSize, null);
             }
         }
 
-        for(Rectangle r:listOfRectangles) {
-            if(new Rectangle(playerX, playerY, 10, 10).intersects(r)) {
+        if (!gm.coin1IsDisposed()) {
+            bi = context.getGrassImage();
+            g2.drawImage(bi, 32, 32, tileSize, tileSize, null);
+        }
+        if (!gm.coin2IsDisposed()) {
+            bi = context.getGrassImage();
+            g2.drawImage(bi, 646, 32, tileSize, tileSize, null);
+        }
+        if (!gm.coin3IsDisposed()) {
+            bi = context.getGrassImage();
+            g2.drawImage(bi, 704, 256, tileSize, tileSize, null);
+        }
+        if (!gm.coin4IsDisposed()) {
+            bi = context.getGrassImage();
+            g2.drawImage(bi, 704, 512, tileSize, tileSize, null);
+        }
+        if (!gm.coin5IsDisposed()) {
+            bi = context.getGrassImage();
+            g2.drawImage(bi, 154, 640, tileSize, tileSize, null);
+        }
+        if (!gm.coin6IsDisposed()) {
+            bi = context.getGrassImage();
+            g2.drawImage(bi, 1184, 704, tileSize, tileSize, null);
+        }
+
+        for (Rectangle r : listOfRectangles) {
+            if (new Rectangle(playerX, playerY, 10, 10).intersects(r)) {
                 playerX = 48;
                 playerY = 716;
             }
@@ -145,7 +178,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
         // player
         // Here is the player image gotten from object context
         biHero = context.getPlayerImage();
-        g2.drawImage(biHero, playerX-16, playerY-16, 32, 32, null, null);
+        g2.drawImage(biHero, playerX - 16, playerY - 16, 32, 32, null, null);
 
         // help
 
@@ -159,15 +192,39 @@ public class TileMapPanel extends JPanel implements ActionListener {
         return tileMap[0].length;
     }
 
+    public void disposeCoin1() {
+        coin1Dispose = true;
+    }
+
+    public void disposeCoin2() {
+        coin1Dispose = true;
+    }
+
+    public void disposeCoin3() {
+        coin1Dispose = true;
+    }
+
+    public void disposeCoin4() {
+        coin1Dispose = true;
+    }
+
+    public void disposeCoin5() {
+        coin1Dispose = true;
+    }
+
+    public void disposeCoin6() {
+        coin1Dispose = true;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-     
+
         // The seconds are being changed every time, the thread time counter stops
         // sleeping
         seconds = timeCounter.getSeconds();
         timer.start();
-        
-        if(seconds == 60) {
+
+        if (seconds == 60) {
             gm.openGameLosingWindow("Time's up!");
         }
         // Here the TileMapPanel is being repainted automatically
