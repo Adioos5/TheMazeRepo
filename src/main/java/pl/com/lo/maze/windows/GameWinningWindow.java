@@ -18,38 +18,40 @@ import pl.com.lo.maze.graphics.GameWinningWindowGraphics;
 import pl.com.lo.maze.importantClasses.Context;
 import pl.com.lo.maze.logic.GameWinningWindowMechanics;
 
-public class GameWinningWindow extends JFrame implements ActionListener {
+public class GameWinningWindow implements ActionListener {
 
     private JButton bPlayAgain, bExit;
     private JPanel gwwp;
+    private static JFrame frame = new JFrame();
 
-    
-    public GameWinningWindow(BufferedImage fireworksBackground){
-        
-        gwwp = new GameWinningWindowGraphics(fireworksBackground);    
-        
-        setBounds(200, 50, 1000, 600);
-        setTitle("The Maze");
-        setResizable(false);
-      
-        
-        bPlayAgain = new JButton("Play again");
+    public GameWinningWindow(BufferedImage fireworksBackground) {
+
+        gwwp = new GameWinningWindowGraphics(fireworksBackground);
+
+        frame.setBounds(200, 50, 1000, 600);
+        frame.setTitle("The Maze");
+        frame.setResizable(false);
+
+        bPlayAgain = new JButton("Back to menu");
         bPlayAgain.setBounds(205, 400, 150, 50);
-        bPlayAgain.addActionListener(new GameWinningWindowMechanics(bPlayAgain,bExit));
+        bPlayAgain.addActionListener(new GameWinningWindowMechanics(bPlayAgain, bExit));
 
         bExit = new JButton("Exit");
         bExit.setBounds(600, 400, 150, 50);
-        bExit.addActionListener(new GameWinningWindowMechanics(bPlayAgain,bExit));
+        bExit.addActionListener(new GameWinningWindowMechanics(bPlayAgain, bExit));
 
-        add(bPlayAgain);
-        add(bExit);
-        add(gwwp);
+        frame.add(bPlayAgain);
+        frame.add(bExit);
+        frame.add(gwwp);
     }
 
     public void runGameWinningWindow() {
-        setVisible(true);
+        frame.setVisible(true);
     }
 
+    public void closeWindow() {
+        frame.dispose();
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
