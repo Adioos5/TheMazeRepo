@@ -167,7 +167,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
         seconds = timeCounter.getSeconds();
         timer.start();
         
-        if(seconds == 60) {
+        if(seconds == 2) {
             gm.openGameLosingWindow("Time's up!");
         }
         // Here the TileMapPanel is being repainted automatically

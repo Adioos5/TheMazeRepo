@@ -112,8 +112,8 @@ public class EntryPoint {
         // coordinates(they will be changed later in class GameMechanics)
         player = new Player(playerImg, 48, 716);
 
-        win = new GameWinningWindow(fireworksBackground);
-        lose = new GameLosingWindow(rainBackground);
+        win = new GameWinningWindow(fireworksBackground, gameIconResourceUrl);
+        lose = new GameLosingWindow(rainBackground, gameIconResourceUrl);
         // Class GameMechanics uses class player to change player's coordinates. This
         // class is also a KeyListener for TileMapPanel. This means, that when we will
         // type anything on the keyboard while the window with this panel is opened,
