@@ -15,6 +15,7 @@ import pl.com.lo.maze.logic.GameMechanics;
 import pl.com.lo.maze.logic.TileMapReader;
 import pl.com.lo.maze.windows.GameLosingWindow;
 import pl.com.lo.maze.windows.GameWinningWindow;
+import pl.com.lo.maze.windows.GameEasterEggWindow;
 import pl.com.lo.maze.windows.MenuWindow;
 
 public class EntryPoint {
@@ -26,6 +27,7 @@ public class EntryPoint {
     private static GameMechanics gameMechanics;
     private static GameWinningWindow win;
     private static GameLosingWindow lose;
+    private static GameEasterEggWindow basiak;
     
     private static URL spikesUrl;
     private static URL coinGifUrl;
@@ -36,6 +38,7 @@ public class EntryPoint {
     private static URL menuBackgroundResourceUrl;
     private static URL fireworksBackgroundResourceUrl;
     private static URL rainBackgroundResourceUrl;
+    private static URL basiakEasterEggUrl;
     
     private static BufferedImage spikesImg;
     private static BufferedImage coinImg;
@@ -45,6 +48,7 @@ public class EntryPoint {
     private static BufferedImage menuBackground;
     private static BufferedImage fireworksBackground;
     private static BufferedImage rainBackground;
+    private static BufferedImage basiakEasterEgg;
     
     private static Tile spikes;
     private static Tile coin;
@@ -73,6 +77,7 @@ public class EntryPoint {
         menuBackgroundResourceUrl = ClassLoader.getSystemResource("images/mazeBackground.jpg");
         fireworksBackgroundResourceUrl = ClassLoader.getSystemResource("images/Fireworks.jpeg");
         rainBackgroundResourceUrl = ClassLoader.getSystemResource("images/GameLosingWindowWallpaper.jpg");
+        basiakEasterEggUrl = ClassLoader.getSystemResource("images/Basiak.png");
         
         // Creating files from images url
         File spike = new File(spikesUrl.toURI());
@@ -83,6 +88,7 @@ public class EntryPoint {
         File menuBackgroundFile = new File(menuBackgroundResourceUrl.toURI());
         File fireworksBackgroundFile = new File(fireworksBackgroundResourceUrl.toURI());
         File rainBackgroundFile = new File(rainBackgroundResourceUrl.toURI());
+        File basiakEasterEggFile = new File(basiakEasterEggUrl.toURI());
         
         // reading files and converting them into images, which we will use in the
         // TileMapPanel
@@ -94,6 +100,7 @@ public class EntryPoint {
         menuBackground = ImageIO.read(menuBackgroundFile);
         fireworksBackground = ImageIO.read(fireworksBackgroundFile);
         rainBackground = ImageIO.read(rainBackgroundFile);
+        basiakEasterEgg = ImageIO.read(basiakEasterEggFile);
         
         createClassObjects();
     }
@@ -114,6 +121,7 @@ public class EntryPoint {
 
         win = new GameWinningWindow(fireworksBackground, gameIconResourceUrl);
         lose = new GameLosingWindow(rainBackground, gameIconResourceUrl);
+        basiak = new GameEasterEggWindow(basiakEasterEgg, basiakEasterEggUrl);
         // Class GameMechanics uses class player to change player's coordinates. This
         // class is also a KeyListener for TileMapPanel. This means, that when we will
         // type anything on the keyboard while the window with this panel is opened,

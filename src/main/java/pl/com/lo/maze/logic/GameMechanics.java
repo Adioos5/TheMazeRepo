@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.com.lo.maze.importantClasses.Player;
+import pl.com.lo.maze.windows.GameEasterEggWindow;
 import pl.com.lo.maze.windows.GameFrame;
 import pl.com.lo.maze.windows.GameLosingWindow;
 import pl.com.lo.maze.windows.GameWinningWindow;
@@ -24,6 +25,7 @@ public class GameMechanics implements KeyListener {
 	private static final int scoreForCoin = 10;
 	private GameWinningWindow gww;
 	private GameLosingWindow glw;
+	private GameEasterEggWindow geew;
 	private List<Rectangle> listOfRectangles = new ArrayList<>();
 	
 	public GameMechanics(Player player, GameWinningWindow gww, GameLosingWindow glw) {
@@ -127,6 +129,14 @@ public class GameMechanics implements KeyListener {
 		if (new Rectangle(playerX, playerY, 32, 32)
 				.intersects(new Rectangle((37 * tileSize) + 16, 23 * tileSize, tileSize,  tileSize))) {
 			stepOnCoin6();
+		}
+		if (new Rectangle(playerX, playerY, 32, 32)
+				.intersects(new Rectangle(-32, 716, tileSize,  tileSize))) {
+			System.out.println("Basiak");
+			gf = new GameFrame(null, null, null);
+		    gf.disposeGameWindow();
+		    setAllValuesToTheBeginning();
+		    geew.runGameEasterEggWindow("basiak");
 		}
 		
 	}
