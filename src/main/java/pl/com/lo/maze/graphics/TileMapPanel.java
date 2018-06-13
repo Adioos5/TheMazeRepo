@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -32,7 +34,8 @@ public class TileMapPanel extends JPanel implements ActionListener {
     private Timer timer;
     private Context context;
     private GameMechanics gm;
-    
+    private List<Rectangle> listOfRectangles = new ArrayList<>();
+
     public TileMapPanel(int[][] tileMap, Context context, GameMechanics gameMechanics) {
         // Here we initialize the time counter object which will be needed for
         // TileMapPanel to change the time left to end the game
@@ -95,6 +98,7 @@ public class TileMapPanel extends JPanel implements ActionListener {
                     // Here is the bush image gotten from object context
                     bi = context.getBushImage();
                     Rectangle rect = new Rectangle(i*tileSize,j*tileSize,tileSize,tileSize);
+                    listOfRectangles.add(rect);
                     gm.addRectangleToTheList(rect);
                 }
                 
@@ -108,6 +112,12 @@ public class TileMapPanel extends JPanel implements ActionListener {
             }
         }
 
+        for(Rectangle r:listOfRectangles) {
+            if(new Rectangle(playerX, playerY, 10, 10).intersects(r)) {
+                playerX = 48;
+                playerY = 716;
+            }
+        }
         // Until the player don't press any key, the tip will be showed on screen
         // tip
         if (play != true) {
