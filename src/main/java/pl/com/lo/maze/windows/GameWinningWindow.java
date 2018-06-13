@@ -27,7 +27,6 @@ public class GameWinningWindow implements ActionListener {
     public GameWinningWindow(BufferedImage fireworksBackground) {
 
         gwwp = new GameWinningWindowGraphics(fireworksBackground);
-
         frame.setBounds(200, 50, 1000, 600);
         frame.setTitle("The Maze");
         frame.setResizable(false);

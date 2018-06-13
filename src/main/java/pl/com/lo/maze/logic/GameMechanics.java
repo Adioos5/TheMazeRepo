@@ -4,13 +4,10 @@ package pl.com.lo.maze.logic;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.net.URISyntaxException;
-
-import javax.swing.JOptionPane;
 
 import pl.com.lo.maze.importantClasses.Player;
 import pl.com.lo.maze.windows.GameFrame;
+import pl.com.lo.maze.windows.GameLosingWindow;
 import pl.com.lo.maze.windows.GameWinningWindow;
 
 public class GameMechanics implements KeyListener {
@@ -22,13 +19,15 @@ public class GameMechanics implements KeyListener {
 	private static final int playerSpeed = 32;
 	private boolean play;
 	private GameWinningWindow gww;
+	private GameLosingWindow glw;
 	
-	public GameMechanics(Player player, GameWinningWindow gww) {
+	public GameMechanics(Player player, GameWinningWindow gww, GameLosingWindow glw) {
 		// Class game mechanics sets its own player's beginning coordinates by getting
 		// the player's coordinates from object player
 		playerX = player.getPlayerX();
 		playerY = player.getPlayerY();
 		this.gww = gww;
+		this.glw = glw;
 	}
 
 	// All getters with variables changed in this class needed for class Context
@@ -58,11 +57,10 @@ public class GameMechanics implements KeyListener {
 			timeCounter.start();
 		}
 		play = true;
-		
 
 		// Methods called depending on which key we will press
 		if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-			 moveRight();
+			moveRight();
 		}
 
 		if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -97,10 +95,7 @@ public class GameMechanics implements KeyListener {
 				.intersects(new Rectangle(2 * 624, 64, 2 * tileSize, 23 * tileSize))) {
 			moveLeft();
 		}
-		if (new Rectangle(playerX, playerY, 32, 32).intersects(new Rectangle(-32, 32, 2 * tileSize, 21 * tileSize))) {
-			
-		}
-
+		
 	}
 
 	@Override
@@ -129,6 +124,12 @@ public class GameMechanics implements KeyListener {
 
 	public void moveDown() {
 		playerY += playerSpeed;
+	}
+	public void openGameLosingWindow(String message) {
+	    GameFrame gf = new GameFrame(null, null, null);
+	    gf.disposeGameWindow();
+	    setAllValuesToTheBeginning();
+	    glw.runGameLosingWindow(message);
 	}
 
 	public void setAllValuesToTheBeginning() {

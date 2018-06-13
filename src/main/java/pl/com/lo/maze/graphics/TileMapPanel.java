@@ -37,12 +37,13 @@ public class TileMapPanel extends JPanel implements ActionListener {
     private TimeCounter timeCounter;
     private Timer timer;
     private Context context;
-
+    private GameMechanics gm;
+    
     public TileMapPanel(int[][] tileMap, Context context, GameMechanics gameMechanics) {
         // Here we initialize the time counter object which will be needed for
         // TileMapPanel to change the time left to end the game
         timeCounter = new TimeCounter();
-
+        gm = gameMechanics;
         this.context = context;
         // Here we initialize the tileMap using the tileMap read at the beginning of the
         // program kept in object context
@@ -154,10 +155,15 @@ public class TileMapPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+     
         // The seconds are being changed every time, the thread time counter stops
         // sleeping
         seconds = timeCounter.getSeconds();
         timer.start();
+        
+        if(seconds == 5) {
+            gm.openGameLosingWindow("Time's up!");
+        }
         // Here the TileMapPanel is being repainted automatically
         repaint();
 

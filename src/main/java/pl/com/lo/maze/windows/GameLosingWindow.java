@@ -1,44 +1,57 @@
 package pl.com.lo.maze.windows;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class GameLosingWindow extends JFrame implements ActionListener {
-	
+import pl.com.lo.maze.graphics.GameLosingWindowGraphics;
+import pl.com.lo.maze.logic.GameLosingWindowMechanics;
 
-	private JButton bPlayAgain, bExit;
+public class GameLosingWindow implements ActionListener {
 
-	public GameLosingWindow() {
-		setBounds(200, 50, 1000, 600);
-		setTitle("The Maze");
-		setResizable(false);
-		bPlayAgain = new JButton("Play again");
-		bPlayAgain.setBounds(205, 400, 150, 50);
-		bPlayAgain.addActionListener(this);
-		add(bPlayAgain);
+    private JButton bPlayAgain, bExit;
+    private BufferedImage img;
+    private JPanel glwg;
+    private static JFrame frame = new JFrame();
+    
+    public GameLosingWindow(BufferedImage img) {
 
-		bExit = new JButton("Exit");
-		bExit.setBounds(600, 400, 150, 50);
-		bExit.addActionListener(this);
-		add(bExit);
+        this.img = img;
+        frame.setBounds(200, 50, 1000, 600);
+        frame.setTitle("The Maze");
+        frame.setResizable(false);
+        bPlayAgain = new JButton("Back to menu");
+        bPlayAgain.setBounds(205, 400, 150, 50);
+        bPlayAgain.addActionListener(new GameLosingWindowMechanics(bPlayAgain,bExit));
+        frame.add(bPlayAgain);
 
-	}
+        bExit = new JButton("Exit");
+        bExit.setBounds(600, 400, 150, 50);
+        bExit.addActionListener(new GameLosingWindowMechanics(bPlayAgain,bExit));
+        frame.add(bExit);
 
-	 public void runGameLosingWindow() {
-	        setVisible(true);
-	 }
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
+    public void runGameLosingWindow(String message) {
+        glwg = new GameLosingWindowGraphics(img,message);
+        frame.add(glwg);
+        frame.setVisible(true);
+    }
+    public void closeWindow() {
+        frame.dispose();
+    }
 
-		if (source == bExit) {
-			System.exit(0);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
 
-		}
-	}
+        if (source == bExit) {
+            System.exit(0);
+
+        }
+    }
 }
