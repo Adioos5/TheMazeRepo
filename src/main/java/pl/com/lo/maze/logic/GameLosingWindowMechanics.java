@@ -24,7 +24,7 @@ public class GameLosingWindowMechanics implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == playAgain) {
-            GameLosingWindow glw = new GameLosingWindow(null);
+            GameLosingWindow glw = new GameLosingWindow(null,null);
             try {
                 EntryPoint.readAllFiles();
                 glw.closeWindow();
