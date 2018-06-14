@@ -13,9 +13,10 @@ import pl.com.lo.maze.importantClasses.Player;
 import pl.com.lo.maze.importantClasses.Tile;
 import pl.com.lo.maze.logic.GameMechanics;
 import pl.com.lo.maze.logic.TileMapReader;
-import pl.com.lo.maze.windows.GameLosingWindow;
-import pl.com.lo.maze.windows.GameWinningWindow;
 import pl.com.lo.maze.windows.GameEasterEggWindow;
+import pl.com.lo.maze.windows.GameLosingBySpikesWindow;
+import pl.com.lo.maze.windows.GameLosingByTimeWindow;
+import pl.com.lo.maze.windows.GameWinningWindow;
 import pl.com.lo.maze.windows.MenuWindow;
 
 public class EntryPoint {
@@ -26,7 +27,8 @@ public class EntryPoint {
     private static Player player;
     private static GameMechanics gameMechanics;
     private static GameWinningWindow win;
-    private static GameLosingWindow lose;
+    private static GameLosingByTimeWindow loseByTime;
+    private static GameLosingBySpikesWindow loseBySpikes;
     private static GameEasterEggWindow basiak;
     
     private static URL spikesUrl;
@@ -39,7 +41,9 @@ public class EntryPoint {
     private static URL fireworksBackgroundResourceUrl;
     private static URL rainBackgroundResourceUrl;
     private static URL basiakEasterEggUrl;
+    private static URL urlSpikesTrap;
     
+    private static BufferedImage spikesTrap;
     private static BufferedImage spikesImg;
     private static BufferedImage coinImg;
     private static BufferedImage grassImg;
@@ -68,6 +72,7 @@ public class EntryPoint {
         readMap = tl.readMap();
 
         // converting image paths into URL
+        urlSpikesTrap = ClassLoader.getSystemResource("images/SpikesTrap.png");
         spikesUrl = ClassLoader.getSystemResource("images/spikes.png");
         coinGifUrl = ClassLoader.getSystemResource("images/coin1.png");
         gameIconResourceUrl = ClassLoader.getSystemResource("images/TheMazeIcon.jpg");
@@ -89,9 +94,10 @@ public class EntryPoint {
         File fireworksBackgroundFile = new File(fireworksBackgroundResourceUrl.toURI());
         File rainBackgroundFile = new File(rainBackgroundResourceUrl.toURI());
         File basiakEasterEggFile = new File(basiakEasterEggUrl.toURI());
-        
+        File spikesTrapFile = new File(urlSpikesTrap.toURI());
         // reading files and converting them into images, which we will use in the
         // TileMapPanel
+        spikesTrap = ImageIO.read(spikesTrapFile);
         spikesImg = ImageIO.read(spike);
         coinImg = ImageIO.read(coin1);
         grassImg = ImageIO.read(grass_0);
@@ -120,14 +126,16 @@ public class EntryPoint {
         player = new Player(playerImg, 48, 716);
 
         win = new GameWinningWindow(fireworksBackground, gameIconResourceUrl);
-        lose = new GameLosingWindow(rainBackground, gameIconResourceUrl);
+        loseByTime = new GameLosingByTimeWindow(rainBackground, gameIconResourceUrl);
+        loseBySpikes = new GameLosingBySpikesWindow(spikesTrap, gameIconResourceUrl);
+
         basiak = new GameEasterEggWindow(basiakEasterEgg, gameIconResourceUrl);
         // Class GameMechanics uses class player to change player's coordinates. This
         // class is also a KeyListener for TileMapPanel. This means, that when we will
         // type anything on the keyboard while the window with this panel is opened,
         // class GameMechanics will read any of these types and do something when we for
         // example press or release some key.
-        gameMechanics = new GameMechanics(player, win, lose, basiak);
+        gameMechanics = new GameMechanics(player, win, loseByTime, loseBySpikes, basiak);
 
         // Class Context keeps(should keep) all the important information for other
         // classes. It

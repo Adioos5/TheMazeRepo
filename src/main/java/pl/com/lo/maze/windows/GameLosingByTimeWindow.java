@@ -14,26 +14,20 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pl.com.lo.maze.graphics.GameLosingWindowGraphics;
+import pl.com.lo.maze.graphics.GameLosingByTimeWindowGraphics;
 import pl.com.lo.maze.logic.GameLosingWindowMechanics;
 
-public class GameLosingWindow implements ActionListener {
+public class GameLosingByTimeWindow {
 
     private JButton bPlayAgain, bExit;
     private BufferedImage img;
-    private BufferedImage spikesTrap;
+   
     private JPanel glwg;
     private static JFrame frame = new JFrame();
     private URL url;
-    private URL urlSpikesTrap;
-    public GameLosingWindow(BufferedImage img, URL url) throws IOException {
-        urlSpikesTrap = ClassLoader.getSystemResource("images/SpikesTrap.png");
-        try {
-            File spikesTrapFile = new File(urlSpikesTrap.toURI());
-            spikesTrap = ImageIO.read(spikesTrapFile);
-        } catch (URISyntaxException e) {
-            System.err.println(e);
-        }
+   
+    public GameLosingByTimeWindow(BufferedImage img, URL url) throws IOException {
+        
         this.img = img;
         this.url = url;
         frame.setBounds(200, 50, 1000, 600);
@@ -51,32 +45,20 @@ public class GameLosingWindow implements ActionListener {
 
     }
 
-    public void runGameLosingWindow(int message) {
+    public void runGameLosingWindow() {
       
         ImageIcon icn;
         icn = new ImageIcon(url);
         frame.setIconImage(icn.getImage());
-        if(message==2) {
-            glwg = new GameLosingWindowGraphics(img,"Time's up!");
+        
+            glwg = new GameLosingByTimeWindowGraphics(img,"Time's up!");
             frame.add(glwg); 
-        } else if (message==1){
-            glwg = new GameLosingWindowGraphics(spikesTrap,"You died");
-            frame.add(glwg);   
-            
-        }
+        
         frame.setVisible(true);
     }
     public void closeWindow() {
         frame.dispose();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-
-        if (source == bExit) {
-            System.exit(0);
-
-        }
-    }
+   
 }

@@ -24,17 +24,11 @@ public class GameWinningWindowMechanics implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == playAgain) {
-            GameWinningWindow gww = new GameWinningWindow(null,null);
-            try {
-                EntryPoint.readAllFiles();
-                gww.closeWindow();
-            } catch (URISyntaxException e1) {
+            GameWinningWindow gww = new GameWinningWindow(null, null);
 
-                System.err.println(e1);
-            } catch (IOException e1) {
-                
-                System.err.println(e1);
-            }
+            EntryPoint.run();
+            gww.closeWindow();
+
         }
 
         if (e.getSource() == exit) {

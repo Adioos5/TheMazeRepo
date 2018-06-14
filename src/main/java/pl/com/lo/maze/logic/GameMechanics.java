@@ -7,11 +7,11 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import pl.com.lo.maze.graphics.GameEasterEggWindowGraphics;
 import pl.com.lo.maze.importantClasses.Player;
 import pl.com.lo.maze.windows.GameEasterEggWindow;
 import pl.com.lo.maze.windows.GameFrame;
-import pl.com.lo.maze.windows.GameLosingWindow;
+import pl.com.lo.maze.windows.GameLosingBySpikesWindow;
+import pl.com.lo.maze.windows.GameLosingByTimeWindow;
 import pl.com.lo.maze.windows.GameWinningWindow;
 
 public class GameMechanics implements KeyListener {
@@ -32,18 +32,20 @@ public class GameMechanics implements KeyListener {
     private boolean play;
     private static final int scoreForCoin = 10;
     private GameWinningWindow gww;
-    private GameLosingWindow glw;
+    private GameLosingByTimeWindow glw;
+    private GameLosingBySpikesWindow gsw;
     private List<Rectangle> listOfRectangles = new ArrayList<>();
     private List<Rectangle> listOfSpikes = new ArrayList<>();
     private GameEasterEggWindow geew;
 
-    public GameMechanics(Player player, GameWinningWindow gww, GameLosingWindow glw, GameEasterEggWindow basiak) {
+    public GameMechanics(Player player, GameWinningWindow gww, GameLosingByTimeWindow glw,GameLosingBySpikesWindow gsw, GameEasterEggWindow basiak) {
         // Class game mechanics sets its own player's beginning coordinates by getting
         // the player's coordinates from object player
         playerX = player.getPlayerX();
         playerY = player.getPlayerY();
         this.gww = gww;
         this.glw = glw;
+        this.gsw = gsw;
         geew = basiak;
     }
 
@@ -243,7 +245,11 @@ public class GameMechanics implements KeyListener {
     }
 
     public void stepOnSpikes() {
-        openGameLosingWindow(1);
+        GameFrame gf = new GameFrame(null, null, null);
+        gf.disposeGameWindow();
+        
+        setAllValuesToTheBeginning();
+        gsw.runGameLosingWindow();
     }
 
     public void openGameLosingWindow(int message) {
@@ -251,7 +257,7 @@ public class GameMechanics implements KeyListener {
         gf.disposeGameWindow();
         
         setAllValuesToTheBeginning();
-        glw.runGameLosingWindow(message);
+        glw.runGameLosingWindow();
     }
 
     public void addRectangleToTheList(Rectangle rect) {

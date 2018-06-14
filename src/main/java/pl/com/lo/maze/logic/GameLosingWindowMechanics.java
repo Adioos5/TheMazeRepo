@@ -3,12 +3,16 @@ package pl.com.lo.maze.logic;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import javax.swing.JButton;
 
 import pl.com.lo.maze.EntryPoint;
-import pl.com.lo.maze.windows.GameLosingWindow;
+import pl.com.lo.maze.windows.GameLosingBySpikesWindow;
+import pl.com.lo.maze.windows.GameLosingBySpikesWindow;
+import pl.com.lo.maze.windows.GameLosingBySpikesWindow;
+import pl.com.lo.maze.windows.GameLosingBySpikesWindow;
+import pl.com.lo.maze.windows.GameLosingBySpikesWindow;
+import pl.com.lo.maze.windows.GameLosingByTimeWindow;
 
 public class GameLosingWindowMechanics implements ActionListener {
 
@@ -24,23 +28,17 @@ public class GameLosingWindowMechanics implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == playAgain) {
-            GameLosingWindow glw = null;
+            GameLosingByTimeWindow glw = null;
+            GameLosingBySpikesWindow gsw = new GameLosingBySpikesWindow(null,null);
             try {
-                glw = new GameLosingWindow(null,null);
+                glw = new GameLosingByTimeWindow(null,null);
             } catch (IOException e2) {
                 // TODO Auto-generated catch block
                 e2.printStackTrace();
             }
-            try {
-                EntryPoint.readAllFiles();
-                glw.closeWindow();
-            } catch (URISyntaxException e1) {
-
-                System.err.println(e1);
-            } catch (IOException e1) {
-                
-                System.err.println(e1);
-            }
+            EntryPoint.run();
+            gsw.closeWindow();
+            glw.closeWindow();
         }
 
         if (e.getSource() == exit) {

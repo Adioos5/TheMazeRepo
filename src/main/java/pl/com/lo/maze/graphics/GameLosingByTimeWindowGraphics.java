@@ -7,12 +7,12 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-public class GameLosingWindowGraphics extends JPanel{
+public class GameLosingByTimeWindowGraphics extends JPanel{
 
     private BufferedImage gameLosingWindowBackground;
     private String message;
     
-    public GameLosingWindowGraphics(BufferedImage img, String message) {
+    public GameLosingByTimeWindowGraphics(BufferedImage img, String message) {
         gameLosingWindowBackground = img;
         this.message = message;
     }
