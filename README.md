@@ -1,3 +1,8 @@
+**The Maze**
+
+"The Maze" is a game, where you have to escape from a maze consisting of bushes,
+traps and other surprising things. You must do it in a limited time period. Otherwise you will lose.
+Have fun!
 
 **Importing Maven project to Eclipse**
 
